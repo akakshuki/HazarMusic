@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane stylesheets="@/css/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+   <children>
+      <BorderPane prefHeight="635.0" prefWidth="754.0">
+         <center>
+            <Pane fx:id="MainPane" prefHeight="637.0" prefWidth="841.0" stylesheets="@../css/application.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="261.0" layoutY="48.0" prefHeight="35.0" prefWidth="86.0" text="Hazard" textFill="#fdf9f9">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="349.0" layoutY="48.0" prefHeight="35.0" prefWidth="88.0" text="Music" textFill="#caba06">
+                     <font>
+                        <Font name="Felix Titling" size="25.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnLogin" layoutX="255.0" layoutY="360.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="239.0" style="-fx-background-color: green;" stylesheets="@../css/application.css" text="Login" textFill="WHITE">
+                     <font>
+                        <Font name="Georgia" size="24.0" />
+                     </font>
+                  </Button>
+                  <Line endX="321.39996337890625" layoutX="272.0" layoutY="298.0" startX="-116.99996948242188" stroke="#bdae41" />
+                  <TextField fx:id="userNameTextField" layoutX="266.0" layoutY="151.0" prefHeight="26.0" prefWidth="217.0" />
+                  <Label layoutX="148.0" layoutY="156.0" text="user" textFill="#faf7f7">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="148.0" layoutY="223.0" text="password" textFill="#faf7f7">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="resetPasswordBtn" layoutX="245.0" layoutY="431.0" text="forgot password" textFill="#faf7f7">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="signUpBtn" layoutX="448.0" layoutY="430.0" prefHeight="23.0" prefWidth="45.0" text="Sign Up!" textFill="#f5c305" />
+                  <Label fx:id="CheckLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="184.0" layoutY="303.0" prefHeight="29.0" prefWidth="371.0" textAlignment="CENTER" textFill="#f50505" />
+                  <PasswordField fx:id="passwordTextfield" layoutX="265.0" layoutY="220.0" prefHeight="26.0" prefWidth="219.0" />
+               </children></Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

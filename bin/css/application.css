@@ -1,0 +1,18 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+#MainPane{
+	-fx-background-color: #1e2954;
+}
+#btnSignUp{
+	-fx-background-color: #ffa10a;
+	}
+#mainBorderPane{
+	-fx-background-color: #1e2954;
+}
+.button {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-opacity: 0.7;
+}
+.button:hover {
+    -fx-opacity: 1;
+}

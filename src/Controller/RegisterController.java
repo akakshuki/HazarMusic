@@ -2,7 +2,7 @@ package Controller;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import Dao.userDao;
+import Dao.UserDao;
 import Entities.User;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -88,11 +88,11 @@ public class RegisterController {
 				if (userNameTextField.getText().isEmpty()
 						|| helper.regex.validValue(userNameTextField.getText(), helper.consta.TEXT)) {
 					checkUser.setText("not ivalid");
-				} else if (userDao.checkUser(userNameTextField.getText())) {
+				} else if (UserDao.checkUser(userNameTextField.getText())) {
 					helper.AlbertDiaglog.AlbertDiaglog("User name are already using");
 				} else if (passwordTextField.getText().isEmpty()) {
 					checkpassword.setText("password not empty");
-				} else if (userDao.checkEmail(mailTextField.getText())) {
+				} else if (UserDao.checkEmail(mailTextField.getText())) {
 					helper.AlbertDiaglog.AlbertDiaglog("mail are already using");
 				} else if (mailTextField.getText().isEmpty()
 						|| helper.regex.validValue(passwordTextField.getText(), helper.consta.MAIL)) {
@@ -111,7 +111,7 @@ public class RegisterController {
 					newUser.setU_DateJoin(Date.valueOf(LocalDate.now()));
 					newUser.setR_ID(2);
 					newUser.setU_Image(helper.ImageChooser.defaultUserImage());
-					if (userDao.AddNewUser(newUser)) {
+					if (UserDao.AddNewUser(newUser)) {
 						helper.AlbertDiaglog.InfoDiaglog("Success");
 						loginForm(mainBorderPane);
 					} else {

@@ -36,23 +36,23 @@ public class ImageChooser {
 		return data;
 	}
 	
-	public static  byte[] defaultUserImage() {
-		byte[] data = null;
-		File file = new File("./src/icon/profile_default.png");
+	public static void SaveImage(String link, ImageView imgView) {		
+	    File file = new File(link);
 		if (file != null) {
 			BufferedImage bImage;
 			try {
+				imgView.setImage(new Image(file.toURI().toURL().toString()));
+				imgView.setSmooth(true);
 				bImage = ImageIO.read(new File(file.getAbsolutePath()));
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				ImageIO.write(bImage, "png", baos);
-				data = baos.toByteArray();
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return data;
-		
-		}
+	
+	}
 		
 
 	

@@ -53,7 +53,7 @@
                            </image>
                         </ImageView>
                         <Label fx:id="NameUserlb" prefHeight="34.0" prefWidth="212.0" text="Name" textFill="#0cf008" GridPane.columnIndex="1" />
-                        <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                        <ImageView fx:id="checkOnlineButon" fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                            <image>
                               <Image url="@../icon/offline-icon-png-6.png" />
                            </image>
@@ -104,7 +104,7 @@
                            </children></Pane>
                      </left>
                      <top>
-                        <GridPane prefHeight="28.0" prefWidth="806.0" BorderPane.alignment="CENTER">
+                        <GridPane prefHeight="26.0" prefWidth="806.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="263.20001220703125" minWidth="10.0" prefWidth="131.1999969482422" />
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="531.199951171875" minWidth="10.0" prefWidth="531.199951171875" />
@@ -118,12 +118,42 @@
                               <Slider prefHeight="34.0" prefWidth="531.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
-                     </top></BorderPane>
+                     </top>
+                     <center>
+                        <Pane prefHeight="84.0" prefWidth="448.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ImageView fitHeight="56.0" fitWidth="60.0" layoutX="192.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="46.0" fitWidth="58.0" layoutX="229.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/baseline_skip_next_white_18dp.png" />
+                                 </image></ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="46.0" layoutX="132.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/baseline_skip_previous_white_18dp.png" />
+                                 </image></ImageView>
+                              <ImageView fitHeight="48.0" fitWidth="55.0" layoutX="178.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/outline_play_arrow_white_18dp.png" />
+                                 </image></ImageView>
+                           </children>
+                        </Pane>
+                     </center>
+                     <right>
+                        <Pane prefHeight="46.0" prefWidth="158.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Slider layoutX="57.0" layoutY="40.0" prefHeight="14.0" prefWidth="87.0" />
+                              <ImageView fitHeight="30.0" fitWidth="22.0" layoutX="14.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/baseline_volume_up_white_18dp.png" />
+                                 </image>
+                              </ImageView>
+                           </children></Pane>
+                     </right></BorderPane>
                   <BorderPane layoutX="-1.0" layoutY="1.0" prefHeight="615.0" prefWidth="807.0" style="-fx-background-color: #1f0940;">
                      <top>
                         <Pane prefHeight="53.0" prefWidth="802.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                            <children>
-                              <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="752.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="736.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icon/download.png" />
                                  </image>
@@ -134,7 +164,7 @@
                      <center>
                         <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <TableView layoutX="1.0" layoutY="105.0" prefHeight="456.0" prefWidth="793.0">
+                              <TableView layoutX="-8.0" layoutY="92.0" prefHeight="456.0" prefWidth="808.0">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="C1" />
                                   <TableColumn prefWidth="81.60003662109375" text="C2" />
@@ -152,11 +182,6 @@
                                     <Image url="@../icon/searchIcon.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="679.0" layoutY="77.0" prefHeight="18.0" prefWidth="106.0" text="+Add New Song" textFill="#2177f8">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
                            </children>
                         </Pane>
                      </center></BorderPane>

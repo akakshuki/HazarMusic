@@ -3,9 +3,7 @@ package Controller;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Set;
-import com.sun.glass.events.MouseEvent;
-import Dao.userDao;
+import Dao.UserDao;
 import Entities.User;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -72,28 +70,29 @@ public class LoginController {
 					User LoginUser = new User();
 					LoginUser.setU_Name(userNameTextField.getText());
 					LoginUser.setU_Password(passwordTextfield.getText());
-					User typeUser = userDao.Login(LoginUser);
-					
+					User typeUser = UserDao.Login(LoginUser);
+
 					switch (typeUser.getR_ID()) {
 					case 1:
 						helper.AlbertDiaglog.AlbertDiaglog("we will be coming soon");
 						break;
 					case 2:
 						try {
-							setOnline();
+							setOnline(typeUser.getU_ID());
 							Stage MainFrm = new Stage();
 							FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/res/UserMainForm.fxml"));
 							BorderPane rootMain = (BorderPane) loaderMain.load();
-							Scene scene = new Scene(rootMain, 1133,735);
+							Scene scene = new Scene(rootMain, 1133, 735);
 							Controller.UserMainFormController UserMainController = loaderMain.getController();
-							UserMainController.loadForm(MainFrm,typeUser);
+							UserMainController.loadForm(MainFrm, typeUser);
 							MainFrm.setScene(scene);
-							scene.getStylesheets().add(getClass().getResource("/css/UserMainForm.css").toExternalForm());
+							scene.getStylesheets()
+									.add(getClass().getResource("/css/UserMainForm.css").toExternalForm());
 							MainFrm.setResizable(false);
-							MainFrm.getIcons().add(new Image("./icon/download.png")); 
+							MainFrm.getIcons().add(new Image("./icon/download.png"));
 							MainFrm.setTitle("Hazard Music!!!!");
 							MainFrm.show();
-							
+
 						} catch (Exception e) {
 							// TODO: handle exception
 							e.printStackTrace();
@@ -107,19 +106,18 @@ public class LoginController {
 
 			}
 
-			private void setOnline() {
-				User UserOnline = new User();
-				UserOnline.setU_Name(userNameTextField.getText());
-				UserOnline.setU_Password(passwordTextfield.getText());
+			private void setOnline(int i) {
 				try {
-					InetAddress address = InetAddress.getLocalHost();
-					System.out.println(address);
-					System.out.println(Inet4Address.getLocalHost().getHostAddress());
+					User UserOnline = new User();
+					UserOnline.setU_ID(i);
+					UserOnline.setU_IP(Inet4Address.getLocalHost().getHostAddress());
+					UserOnline.setU_CheckOnline(true);
+					UserDao.setOnlineForUser(UserOnline);
+					
 				} catch (UnknownHostException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 			}
 		});
 

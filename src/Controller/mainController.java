@@ -7,10 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class mainController {
+public class MainController {
 	@FXML
 	private Button btnSignUp;
 	@FXML

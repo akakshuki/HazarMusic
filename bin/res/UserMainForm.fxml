@@ -53,7 +53,7 @@
                            </image>
                         </ImageView>
                         <Label fx:id="NameUserlb" prefHeight="34.0" prefWidth="212.0" text="Name" textFill="#0cf008" GridPane.columnIndex="1" />
-                        <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                        <ImageView fx:id="checkOnlineButon" fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                            <image>
                               <Image url="@../icon/offline-icon-png-6.png" />
                            </image>
@@ -153,7 +153,7 @@
                      <top>
                         <Pane prefHeight="53.0" prefWidth="802.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                            <children>
-                              <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="752.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="736.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icon/download.png" />
                                  </image>

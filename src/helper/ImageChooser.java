@@ -4,11 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -35,9 +31,9 @@ public class ImageChooser {
 		}
 		return data;
 	}
-	
-	public static void SaveImage(String link, ImageView imgView) {		
-	    File file = new File(link);
+
+	public static void SaveImage(String link, ImageView imgView) {
+		File file = new File(link);
 		if (file != null) {
 			BufferedImage bImage;
 			try {
@@ -46,20 +42,35 @@ public class ImageChooser {
 				bImage = ImageIO.read(new File(file.getAbsolutePath()));
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				ImageIO.write(bImage, "png", baos);
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-	
-	}
-		
 
-	
+	}
+
 	public static void DisplayyyyyImage(byte[] dataImage, ImageView imgView) {
 		Image img = new Image(new ByteArrayInputStream(dataImage));
 		imgView.setImage(img);
 		imgView.setSmooth(true);
 	}
-	
+
+	public static byte[] defaultUserImage() {
+		byte[] data = null;
+		File file = new File("./src/icon/profile_default.png");
+		if (file != null) {
+			BufferedImage bImage;
+			try {
+				bImage = ImageIO.read(new File(file.getAbsolutePath()));
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				ImageIO.write(bImage, "png", baos);
+				data = baos.toByteArray();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return data;
+
+	}
 }

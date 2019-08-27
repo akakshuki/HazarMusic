@@ -148,10 +148,22 @@ public class UserDao {
 		};
 			conn.CallProcExec("SetOnlineForUser", param);
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 			// TODO: handle exceptione.printStackTrace();
 		}
 		
+		
+	}
+
+	public static void setUserOffline(int u_ID) {
+		ConnectionSQL conn = new ConnectionSQL();
+		try {
+			Object[] param = {u_ID, 0};
+			conn.CallProcExec("SetOfflineForUser", param);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		
 	}
 		

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-12">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/allOfJava/ConnectionLib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/Documents/Zalo Received Files/sqljdbc_7.2/sqljdbc_7.2/enu/mssql-jdbc-7.2.2.jre11.jar"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javaFX11"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

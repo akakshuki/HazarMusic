@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
@@ -104,7 +105,7 @@
                            </children></Pane>
                      </left>
                      <top>
-                        <GridPane prefHeight="26.0" prefWidth="806.0" BorderPane.alignment="CENTER">
+                        <GridPane fx:id="timeMusiclb" prefHeight="26.0" prefWidth="806.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="263.20001220703125" minWidth="10.0" prefWidth="131.1999969482422" />
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="531.199951171875" minWidth="10.0" prefWidth="531.199951171875" />
@@ -114,8 +115,8 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="00:00" textFill="#f8f8f8" />
-                              <Slider prefHeight="34.0" prefWidth="531.0" GridPane.columnIndex="1" />
+                              <Label fx:id="timeNuberLb" text="00:00" textFill="#f8f8f8" />
+                              <Slider fx:id="MusicTimeSlide" prefHeight="34.0" prefWidth="531.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                      </top>
@@ -123,30 +124,43 @@
                         <Pane prefHeight="84.0" prefWidth="448.0" BorderPane.alignment="CENTER">
                            <children>
                               <ImageView fitHeight="56.0" fitWidth="60.0" layoutX="192.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fitHeight="46.0" fitWidth="58.0" layoutX="229.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="nextButton" fitHeight="46.0" fitWidth="58.0" layoutX="229.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icon/baseline_skip_next_white_18dp.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="50.0" fitWidth="46.0" layoutX="132.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="behindButton" fitHeight="50.0" fitWidth="46.0" layoutX="132.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icon/baseline_skip_previous_white_18dp.png" />
                                  </image></ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="55.0" layoutX="178.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="playButton" fitHeight="48.0" fitWidth="55.0" layoutX="178.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icon/outline_play_arrow_white_18dp.png" />
                                  </image></ImageView>
+                              <ImageView fx:id="ReloadMusicBtn" blendMode="ADD" fitHeight="31.0" fitWidth="31.0" layoutX="292.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/reoloadIcon.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="S_RESIZE" />
+                                 </cursor></ImageView>
                            </children>
                         </Pane>
                      </center>
                      <right>
                         <Pane prefHeight="46.0" prefWidth="158.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Slider layoutX="57.0" layoutY="40.0" prefHeight="14.0" prefWidth="87.0" />
-                              <ImageView fitHeight="30.0" fitWidth="22.0" layoutX="14.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                              <Slider fx:id="volunmSlide" layoutX="59.0" layoutY="64.0" prefHeight="14.0" prefWidth="87.0" />
+                              <ImageView fx:id="MuteButton" fitHeight="30.0" fitWidth="22.0" layoutX="14.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icon/baseline_volume_up_white_18dp.png" />
+                                    <Image url="@../icon/speaker.png" />
                                  </image>
                               </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="25.0" layoutX="13.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/openFile.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="OpenNewFilelb" alignment="CENTER_RIGHT" layoutX="11.0" layoutY="15.0" prefHeight="26.0" prefWidth="108.0" text="Open new file" textFill="#ede9e9" />
                            </children></Pane>
                      </right></BorderPane>
                   <BorderPane layoutX="-1.0" layoutY="1.0" prefHeight="615.0" prefWidth="807.0" style="-fx-background-color: #1f0940;">

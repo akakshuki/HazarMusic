@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="606.0" prefWidth="615.0" style="-fx-background-color: #311178;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AnotherFriendListController">
+   <children>
+      <Pane layoutY="-7.0" prefHeight="643.0" prefWidth="615.0">
+         <children>
+            <Label layoutX="25.0" layoutY="16.0" prefHeight="32.0" prefWidth="169.0" text="Friends" textFill="#edc528">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="100.0" layoutY="16.0" prefHeight="24.0" prefWidth="94.0" style="-fx-background-color: #edc528;" text="List" textFill="#111110">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <TableView fx:id="ListFriendTableView" layoutX="96.0" layoutY="133.0" prefHeight="438.0" prefWidth="375.0">
+              <columns>
+                <TableColumn fx:id="UserNameCol" prefWidth="75.0" text="User Name" />
+                <TableColumn fx:id="FullNameCol" prefWidth="75.0" text="Full Name" />
+                  <TableColumn fx:id="DateJoinCol" prefWidth="75.0" text="Date Join" />
+                  <TableColumn fx:id="ContactCol" prefWidth="75.0" text="Contact" />
+                  <TableColumn fx:id="ButtonCol" prefWidth="72.79998779296875" />
+              </columns>
+            </TableView>
+            <TextField fx:id="SearchTextField" layoutX="110.0" layoutY="100.0" />
+            <ImageView fitHeight="32.0" fitWidth="26.0" layoutX="270.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/searchIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

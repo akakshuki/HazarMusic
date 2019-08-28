@@ -9,7 +9,7 @@ public class regex {
 	public static boolean  validValue(String StringCheck, String regexStyle) {
 		Pattern pattern = Pattern.compile(regexStyle, Pattern.UNICODE_CHARACTER_CLASS);
 		Matcher matcher = pattern.matcher(StringCheck);
-		if(! matcher.find()) {
+		if(!matcher.find()) {
 			return false;
 		}else {
 			return true;

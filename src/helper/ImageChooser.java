@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class ImageChooser {
 	public static byte[] SaveImage(Stage primaryStage, ImageView imgView) {
@@ -72,5 +73,17 @@ public class ImageChooser {
 		}
 		return data;
 
+	}
+	public static File ChooseFileMusic(Stage HaveStage) {
+		File haveFile = null;
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Resource File");
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
+				new ExtensionFilter("All Files", "*.*"));
+		File selectedFile = fileChooser.showOpenDialog(HaveStage);
+		if (selectedFile != null) {
+			haveFile = selectedFile;
+		}
+		return haveFile;
 	}
 }

@@ -64,7 +64,7 @@ public class RegisterController {
 			@Override
 			public void handle(Event e) {
 				try {
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("/res/LoginFrm.fxml"));
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/LoginFrm.fxml"));
 					Parent root = (Parent) loader.load();
 					Controller.LoginController controller = loader.getController();
 					Stage mainFrm = new Stage();
@@ -95,7 +95,7 @@ public class RegisterController {
 				} else if (UserDao.checkEmail(mailTextField.getText())) {
 					helper.AlbertDiaglog.AlbertDiaglog("mail are already using");
 				} else if (mailTextField.getText().isEmpty()
-						|| helper.regex.validValue(passwordTextField.getText(), helper.consta.MAIL)) {
+						|| helper.regex.validValue(mailTextField.getText(), helper.consta.MAIL)==true) {
 					chekcMail.setText("mail not invalid");
 				} else if (fullNameTextField.getText().isEmpty()) {
 					helper.AlbertDiaglog.AlbertDiaglog("we dont know your name @@! ?");

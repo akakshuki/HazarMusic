@@ -29,6 +29,8 @@ public class ImageChooser {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else {
+			helper.AlbertDiaglog.InfoDiaglog("you have cancel");
 		}
 		return data;
 	}
@@ -74,12 +76,12 @@ public class ImageChooser {
 		return data;
 
 	}
+
 	public static File ChooseFileMusic(Stage HaveStage) {
 		File haveFile = null;
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Resource File");
-		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
-				new ExtensionFilter("All Files", "*.*"));
+		
 		File selectedFile = fileChooser.showOpenDialog(HaveStage);
 		if (selectedFile != null) {
 			haveFile = selectedFile;

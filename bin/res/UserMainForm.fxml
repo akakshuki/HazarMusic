@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -18,9 +22,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="735.0" prefWidth="1133.0" stylesheets="@/css/UserMainForm.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserMainFormController">
+<BorderPane prefHeight="734.0" prefWidth="1209.0" stylesheets="@/css/UserMainForm.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserMainFormController">
    <center>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="749.0" prefWidth="1153.0" BorderPane.alignment="CENTER">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="320.0" style="-fx-background-color: #1f0940;" stylesheets="@../css/UserMainForm.css">
                <children>
@@ -38,11 +42,12 @@
                         </Label>
                      </children>
                   </Pane>
-                  <GridPane layoutY="81.0" prefHeight="42.0" prefWidth="335.0">
+                  <GridPane layoutY="81.0" prefHeight="36.0" prefWidth="335.0">
                     <columnConstraints>
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="95.19998168945312" minWidth="10.0" prefWidth="29.20001220703125" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.20003662109374" minWidth="10.0" prefWidth="204.80001220703124" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="161.5999984741211" minWidth="10.0" prefWidth="36.79998779296875" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="95.19998168945312" minWidth="10.0" prefWidth="33.39998779296875" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.20003662109374" minWidth="10.0" prefWidth="206.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="161.5999984741211" minWidth="10.0" prefWidth="56.60004882812501" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="161.5999984741211" minWidth="10.0" prefWidth="42.99995117187501" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -53,15 +58,20 @@
                               <Image url="@../icon/emtyIcon.jpg" />
                            </image>
                         </ImageView>
-                        <Label fx:id="NameUserlb" prefHeight="34.0" prefWidth="212.0" text="Name" textFill="#0cf008" GridPane.columnIndex="1" />
+                        <Label fx:id="NameUserlb" prefHeight="34.0" prefWidth="173.0" text="Name" textFill="#0cf008" GridPane.columnIndex="1" />
                         <ImageView fx:id="checkOnlineButon" fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                            <image>
                               <Image url="@../icon/offline-icon-png-6.png" />
                            </image>
                         </ImageView>
+                        <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                           <image>
+                              <Image url="@../icon/notification-64.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </GridPane>
-                  <ListView layoutY="206.0" prefHeight="139.0" prefWidth="340.0" />
+                  <ListView layoutY="206.0" prefHeight="150.0" prefWidth="364.0" />
                   <TextField layoutX="12.0" layoutY="141.0" />
                   <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="181.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -73,27 +83,75 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutY="366.0" prefHeight="29.0" prefWidth="108.0" text="My Songs" textFill="#eae2e2">
+                  <Label layoutX="15.0" layoutY="498.0" prefHeight="30.0" prefWidth="101.0" text="My Songs" textFill="#eae2e2">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <ListView layoutX="-2.0" layoutY="410.0" prefHeight="157.0" prefWidth="340.0" />
                   <ImageView fx:id="addFriendButon" fitHeight="20.0" fitWidth="29.0" layoutX="304.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icon/addFriendIcon.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="228.0" layoutY="386.0" prefHeight="18.0" prefWidth="106.0" text="+Add New Song" textFill="#2177f8">
+                  <Label fx:id="AddNewSong" layoutX="241.0" layoutY="503.0" prefHeight="18.0" prefWidth="106.0" text="+Add New Song" textFill="#2177f8">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
+                  <TabPane layoutX="-1.0" layoutY="535.0" prefHeight="216.0" prefWidth="362.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Song I have">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="LibMusicFileView" prefHeight="200.0" prefWidth="366.0">
+                                      <columns>
+                                        <TableColumn fx:id="LibSong" prefWidth="72.00002443790436" text="Song" />
+                                        <TableColumn fx:id="LibSinger" prefWidth="62.39996337890625" text="singer" />
+                                          <TableColumn fx:id="LibUser" prefWidth="65.60000610351562" text="User" />
+                                          <TableColumn fx:id="LibLink" minWidth="0.0" prefWidth="68.0" text="Get File " />
+                                          <TableColumn fx:id="LibButton" prefWidth="86.4000244140625" text="Delete" />
+                                      </columns>
+                                    </TableView>
+                                 </children></AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="your Upload Song">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="MusicUserIUpLoadTable" prefHeight="186.0" prefWidth="362.0">
+                                      <columns>
+                                        <TableColumn fx:id="NameSongCol" prefWidth="69.60003209114075" text="Song" />
+                                        <TableColumn fx:id="SingerSongCol" prefWidth="69.59998321533203" text="Singer" />
+                                          <TableColumn fx:id="DateSongCol" prefWidth="125.60009765625" text="Date" />
+                                          <TableColumn fx:id="ActiveCol" prefWidth="83.199951171875" text="Status" />
+                                          <TableColumn minWidth="0.0" prefWidth="11.999975585937477" text="Delete" />
+                                      </columns>
+                                    </TableView>
+                                 </children></AnchorPane>
+                        </content>
+                      </Tab>
+                         <Tab text="Your play List">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="freeStyleTableView" layoutX="-2.0" prefHeight="186.0" prefWidth="367.0">
+                                      <columns>
+                                        <TableColumn fx:id="FreeListNameSongCol" prefWidth="162.39998769760132" text="Song" />
+                                          <TableColumn fx:id="FreeStyleLinkCol" prefWidth="183.20004272460938" text="Get File" />
+                                      </columns>
+                                    </TableView>
+                                 </children></AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="574.0" prefWidth="622.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="766.0" prefWidth="810.0">
                <children>
-                  <BorderPane layoutX="-1.0" layoutY="616.0" opacity="0.67" prefHeight="122.0" prefWidth="806.0" style="-fx-background-color: black;">
+                  <BorderPane layoutX="-1.0" layoutY="616.0" opacity="0.67" prefHeight="142.0" prefWidth="858.0" style="-fx-background-color: black;">
                      <left>
                         <Pane prefHeight="90.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
@@ -105,7 +163,7 @@
                            </children></Pane>
                      </left>
                      <top>
-                        <GridPane fx:id="timeMusiclb" prefHeight="26.0" prefWidth="806.0" BorderPane.alignment="CENTER">
+                        <GridPane prefHeight="26.0" prefWidth="806.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="263.20001220703125" minWidth="10.0" prefWidth="131.1999969482422" />
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="531.199951171875" minWidth="10.0" prefWidth="531.199951171875" />
@@ -147,7 +205,7 @@
                         </Pane>
                      </center>
                      <right>
-                        <Pane prefHeight="46.0" prefWidth="158.0" BorderPane.alignment="CENTER">
+                        <Pane prefHeight="101.0" prefWidth="161.0" BorderPane.alignment="CENTER">
                            <children>
                               <Slider fx:id="volunmSlide" layoutX="59.0" layoutY="64.0" prefHeight="14.0" prefWidth="87.0" />
                               <ImageView fx:id="MuteButton" fitHeight="30.0" fitWidth="22.0" layoutX="14.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
@@ -160,14 +218,14 @@
                                     <Image url="@../icon/openFile.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="OpenNewFilelb" alignment="CENTER_RIGHT" layoutX="11.0" layoutY="15.0" prefHeight="26.0" prefWidth="108.0" text="Open new file" textFill="#ede9e9" />
+                              <Label fx:id="OpenNewFilelb" alignment="CENTER_RIGHT" layoutX="5.0" layoutY="14.0" prefHeight="26.0" prefWidth="117.0" text="Open  file" textFill="#ede9e9" />
                            </children></Pane>
                      </right></BorderPane>
-                  <BorderPane layoutX="-1.0" layoutY="1.0" prefHeight="615.0" prefWidth="807.0" style="-fx-background-color: #1f0940;">
+                  <BorderPane layoutX="-1.0" layoutY="1.0" prefHeight="614.0" prefWidth="857.0" style="-fx-background-color: #1f0940;">
                      <top>
-                        <Pane prefHeight="53.0" prefWidth="802.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+                        <Pane prefHeight="47.0" prefWidth="810.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                            <children>
-                              <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="736.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="794.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icon/download.png" />
                                  </image>
@@ -176,18 +234,19 @@
                         </Pane>
                      </top>
                      <center>
-                        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <Pane prefHeight="562.0" prefWidth="819.0" BorderPane.alignment="CENTER">
                            <children>
-                              <TableView layoutX="-8.0" layoutY="92.0" prefHeight="456.0" prefWidth="808.0">
+                              <TableView fx:id="MusicListTable" layoutX="1.0" layoutY="95.0" prefHeight="475.0" prefWidth="856.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="81.60003662109375" text="C2" />
-                                    <TableColumn prefWidth="75.0" text="Column X" />
-                                    <TableColumn prefWidth="75.0" text="Column X" />
-                                    <TableColumn prefWidth="75.0" text="Column X" />
-                                    <TableColumn prefWidth="75.0" text="Column X" />
-                                    <TableColumn prefWidth="75.0" text="Column X" />
-                                    <TableColumn prefWidth="75.0" text="Column X" />
+                                  <TableColumn fx:id="M_NameCol" prefWidth="115.20000910758972" text="Song" />
+                                  <TableColumn fx:id="M_SingerCol" prefWidth="107.19998168945312" text="Singer" />
+                                    <TableColumn fx:id="M_DescriptionCol" prefWidth="123.19996643066406" text="Description" />
+                                    <TableColumn fx:id="M_DateAddCol" prefWidth="105.5999755859375" text="Date Add" />
+                                    <TableColumn fx:id="M_StatusCol" prefWidth="39.199951171875" text="Status" />
+                                    <TableColumn fx:id="U_NameCol" prefWidth="93.60009765625" text="User" />
+                                    <TableColumn fx:id="U_AdressCol" prefWidth="71.99993896484375" text="Adress" />
+                                    <TableColumn fx:id="U_CountryCol" minWidth="8.7999267578125" prefWidth="69.60009765625" text="Country" />
+                                    <TableColumn fx:id="RequestCol" prefWidth="83.2000732421875" text="Request" />
                                 </columns>
                               </TableView>
                               <TextField layoutX="27.0" layoutY="44.0" prefHeight="25.0" prefWidth="232.0" />
@@ -196,6 +255,13 @@
                                     <Image url="@../icon/searchIcon.png" />
                                  </image>
                               </ImageView>
+                              <ImageView fx:id="upLoadMusicFile" fitHeight="33.0" fitWidth="131.0" layoutX="802.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/openFile.png" />
+                                 </image>
+                              </ImageView>
+                              <ButtonBar layoutX="329.0" layoutY="24.0" prefHeight="40.0" prefWidth="200.0" />
+                              <Button fx:id="test" layoutX="644.0" layoutY="32.0" mnemonicParsing="false" text="Button" />
                            </children>
                         </Pane>
                      </center></BorderPane>

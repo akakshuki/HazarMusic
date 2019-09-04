@@ -81,7 +81,7 @@ public class LoginController {
 							Stage MainFrm = new Stage();
 							FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/res/UserMainForm.fxml"));
 							BorderPane rootMain = (BorderPane) loaderMain.load();
-							Scene scene = new Scene(rootMain, 1133, 735);
+							Scene scene = new Scene(rootMain, 1224, 758);
 							Controller.UserMainFormController UserMainController = loaderMain.getController();
 							UserMainController.loadForm(MainFrm, typeUser);
 							MainFrm.setScene(scene);

@@ -46,7 +46,7 @@ public class RegisterController {
 
 	public void init(Stage mainFrm, BorderPane mainBorderPane) {
 		btnSignUp.setDisable(true);
-		registerForm();
+		registerForm(mainBorderPane);
 		loginForm(mainBorderPane);
 		CheckAgree.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -80,13 +80,13 @@ public class RegisterController {
 
 	}
 
-	private void registerForm() {
+	private void registerForm(BorderPane mainBorderPane) {
 		btnSignUp.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent p) {
 				if (userNameTextField.getText().isEmpty()
-						|| helper.regex.validValue(userNameTextField.getText(), helper.consta.TEXT)) {
+						|| helper.regex.validValue(userNameTextField.getText(), helper.consta.USERNAME)) {
 					checkUser.setText("not ivalid");
 				} else if (UserDao.checkUser(userNameTextField.getText())) {
 					helper.AlbertDiaglog.AlbertDiaglog("User name are already using");

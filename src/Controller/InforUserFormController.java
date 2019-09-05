@@ -64,8 +64,7 @@ public class InforUserFormController {
 			
 			@Override
 			public void handle(ActionEvent p) {
-				if (mailTextField.getText().isEmpty()
-						|| helper.regex.validValue(mailTextField.getText(), helper.consta.MAIL)) {
+				if (mailTextField.getText().isEmpty()||! helper.regex.validValue(mailTextField.getText(), helper.consta.MAIL)) {
 					helper.AlbertDiaglog.AlbertDiaglog("mail is not avalid");
 				}else if (FullNameTextField.getText().isEmpty()) {
 					helper.AlbertDiaglog.AlbertDiaglog("we dont know your name @@! ?");

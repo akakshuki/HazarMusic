@@ -18,6 +18,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="734.0" prefWidth="1209.0" stylesheets="@/css/UserMainForm.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserMainFormController">
@@ -40,12 +41,12 @@
                         </Label>
                      </children>
                   </Pane>
-                  <GridPane layoutY="81.0" prefHeight="36.0" prefWidth="335.0">
+                  <GridPane layoutY="81.0" prefHeight="48.0" prefWidth="335.0">
                     <columnConstraints>
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="95.19998168945312" minWidth="10.0" prefWidth="33.39998779296875" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.20003662109374" minWidth="10.0" prefWidth="206.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="161.5999984741211" minWidth="10.0" prefWidth="56.60004882812501" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="161.5999984741211" minWidth="10.0" prefWidth="42.99995117187501" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="161.5999984741211" minWidth="10.0" prefWidth="74.20002441406251" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="161.5999984741211" minWidth="10.0" prefWidth="23.79997558593749" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -62,7 +63,7 @@
                               <Image url="@../icon/offline-icon-png-6.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                        <ImageView fx:id="noficationButton" fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
                            <image>
                               <Image url="@../icon/notification-64.png" />
                            </image>
@@ -145,6 +146,7 @@
                       </Tab>
                     </tabs>
                   </TabPane>
+                  <VBox fx:id="showListviewPane" layoutX="256.0" layoutY="117.0" prefHeight="200.0" prefWidth="100.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="766.0" prefWidth="810.0">

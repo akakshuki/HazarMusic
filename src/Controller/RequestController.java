@@ -25,50 +25,68 @@ public class RequestController {
 	private Label songStatustLb;
 	@FXML
 	private Label descriptionLb;
-	@FXML 
+	@FXML
 	private Button requestSentFileButton;
 	@FXML
 	private ImageView avatarUser;
 	@FXML
-	private Label fullNameUser; 
+	private Label fullNameUser;
 	@FXML
-	private Label 	nameUserLb;
-	@FXML 
+	private Label nameUserLb;
+	@FXML
 	private Label mailUserLb;
 	@FXML
 	private ImageView addFriendLb;
+
 	public void loadRequestForm(Stage requesFor, MusicFile inforSong, User typeUser) {
 		loadUserInfor(inforSong);
 		loadMusicInfo(inforSong);
-		buttonAddFriend(typeUser,inforSong);
+		buttonAddFriend(typeUser, inforSong);
+		buttonRequestFile(typeUser,inforSong);
+	}
+
+	private void buttonRequestFile(User typeUser, MusicFile inforSong) {
+		
 	}
 
 	private void buttonAddFriend(User user1, MusicFile user2FromSongInfor) {
-		addFriendLb.setOnMouseClicked((MouseEvent  e)->{
-			{
-				String messenger = helper.AlbertDiaglog.TextDialog();
-				if(RelationShipDao.getNewRelationShip(user1,user2FromSongInfor,messenger,LocalDate.now())) {
-					helper.AlbertDiaglog.InfoDiaglog("add friend success");
-				}else {
-					helper.AlbertDiaglog.AlbertDiaglog("add friend fail, try again");
+		
+		if(RelationShipDao.CheckRelationShip(user1,user2FromSongInfor)||user1.getU_ID() == user2FromSongInfor.getU_ID()){
+			addFriendLb.isDisabled();
+			requestSentFileButton.setDisable(false);
+		}else {
+			requestSentFileButton.setDisable(true);
+			addFriendLb.setOnMouseClicked((MouseEvent  e)->{
+				 {
+					 
+					String messenger = helper.AlbertDiaglog.TextDialog();
+					if(RelationShipDao.getNewRelationShip(user1,user2FromSongInfor,messenger,LocalDate.now())) {
+						helper.AlbertDiaglog.InfoDiaglog("add friend success");
+						requestSentFileButton.setDisable(false);
+						buttonRequestFile(user1,user2FromSongInfor);
+						
+					}else {
+						helper.AlbertDiaglog.AlbertDiaglog("add friend fail, try again");
+					}
 				}
-			}
-	
-		});
+		
+			});
+		}
+		
 	}
 
 	private void loadMusicInfo(MusicFile inforSong) {
 		nameSongLb.setText(inforSong.getM_Name());
 		singerNameLb.setText(inforSong.getM_Singer());
 		dateAddLb.setText(inforSong.getM_Date().toString());
-		if(inforSong.isM_Active()) {
+		if (inforSong.isM_Active()) {
 			songStatustLb.setText("ready");
-		}else {
+		} else {
 			songStatustLb.setText("not yet");
 			requestSentFileButton.setDisable(true);
 		}
 		descriptionLb.setText(inforSong.getM_Description());
-			
+
 	}
 
 	private void loadUserInfor(MusicFile inforSong) {
@@ -78,5 +96,4 @@ public class RequestController {
 		helper.ImageChooser.DisplayyyyyImage(inforSong.getUser().getU_Image(), avatarUser);
 	}
 
-	
 }

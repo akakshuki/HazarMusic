@@ -135,7 +135,10 @@ public class UserMainFormController {
 	private Label SingerLb;
 	@FXML
 	private Label Userlb;
-
+//	@FXML
+//	private ImageView ;
+	
+	
 	private String LinkFile;
 	private Media me;
 	private MediaPlayer mp;
@@ -150,7 +153,13 @@ public class UserMainFormController {
 		LoadPlayer(mainFrm, typeUser);
 		LoadTableMusicList(typeUser);
 		LoadTabMusic(mainFrm, typeUser);
+		LoadNoficationAndFriendList(mainFrm,typeUser);
 
+	}
+
+	private void LoadNoficationAndFriendList(Stage mainFrm, User typeUser) {
+	
+		
 	}
 
 	private void LoadTabMusic(Stage mainFrm, User typeUser) {

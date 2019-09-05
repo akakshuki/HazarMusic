@@ -1,9 +1,12 @@
 package Dao;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import ConnetionLib.ConnectionSQL;
 import Entities.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 
@@ -227,5 +230,35 @@ public class UserDao {
 		return inforUser;
 		
 
+	}
+
+	public static ObservableList<User> ListGetAllUser() {
+		ArrayList<User> arrayList = new ArrayList<>();
+		ObservableList<User> list = null;
+		ConnectionSQL conn = new ConnectionSQL();
+		try {
+			ResultSet rs = conn.CallProc("getALlUser");
+			while (rs.next()) {
+				
+				User inforUser = new User();
+				inforUser.setU_Name(rs.getString(2));
+				inforUser.setU_Adress(rs.getString(4));
+				inforUser.setU_Country(rs.getString(5));
+				inforUser.setU_Bio(rs.getString(6));
+				inforUser.setU_Image(rs.getBytes(7));
+				inforUser.setU_Mail(rs.getString(8));
+				inforUser.setU_Phone(rs.getString(9));
+				inforUser.setU_CheckOnline(rs.getBoolean(11));
+				inforUser.setR_ID(rs.getInt(12));
+				inforUser.setU_DateJoin(rs.getDate(13));
+				inforUser.setU_BirthDate(rs.getDate(14));
+				inforUser.setU_FullName(rs.getNString(15));
+				arrayList.add(inforUser);
+				list =FXCollections.observableArrayList(arrayList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

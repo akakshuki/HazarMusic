@@ -57,7 +57,8 @@ public class MusicFileDao {
 				userInfor.setU_Name(rs.getString(11));
 				userInfor.setU_Image(rs.getBytes(13));
 				file.setUser(userInfor);
-				file.setU_ID(rs.getInt(12));
+				file.setM_ID(rs.getInt(12));
+				file.setU_ID(rs.getInt(14));
 				file.setU_Name(rs.getString(6));
 				file.setU_Adress(rs.getString(7));
 				file.setU_Country(rs.getString(8));

@@ -32,7 +32,7 @@ public class AlbertDiaglog {
 	}
 	public static String TextDialog() {
 		TextInputDialog dialog = new TextInputDialog("");
-			dialog.setTitle("input here");
+		dialog.setTitle("input here");
         dialog.setHeaderText("Enter your messenge:");
         dialog.setContentText("messenge:");
         dialog.showAndWait();

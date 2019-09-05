@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<BorderPane prefHeight="442.0" prefWidth="433.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controller.NoficationController">
+   <center>
+      <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <Pane prefHeight="61.0" prefWidth="434.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="86.0" layoutY="18.0" mnemonicParsing="false" text="Button" />
+            <ChoiceBox layoutX="252.0" layoutY="18.0" prefWidth="150.0" />
+         </children>
+      </Pane>
+   </bottom>
+</BorderPane>

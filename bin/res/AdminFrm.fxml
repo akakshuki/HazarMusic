@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #492382;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminController">
+ <center>
+      <Pane prefHeight="900.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="MusiccFile" layoutX="9.0" layoutY="92.0" prefHeight="340.0" prefWidth="1177.0">
+              <columns>
+                <TableColumn fx:id="NameM" prefWidth="200.0" text="Name" />
+                <TableColumn fx:id="SingleM" prefWidth="145.0" text="Single" />
+                  <TableColumn fx:id="DescriptionM" prefWidth="289.0" text="Description" />
+                  <TableColumn fx:id="DateAddM" prefWidth="150.0" text="DateAdd" />
+                  <TableColumn fx:id="LinkFileM" prefWidth="178.0" text="LinkFile" />
+                  <TableColumn fx:id="ActiveM" prefWidth="139.0" text="Active" />
+                  <TableColumn fx:id="StatusM" prefWidth="75.0" text="Status" />
+              </columns>
+            </TableView>
+            <TableView fx:id="AccountT" layoutX="13.0" layoutY="451.0" prefHeight="356.0" prefWidth="1174.0">
+              <columns>
+                <TableColumn fx:id="UserNameAcc" prefWidth="75.0" text="UserName" />
+                <TableColumn fx:id="AddressAcc" prefWidth="129.0" text="Address" />
+                  <TableColumn fx:id="CountryAcc" prefWidth="131.0" text="Country" />
+                  <TableColumn fx:id="MailAcc" prefWidth="151.0" text="Mail" />
+                  <TableColumn fx:id="PhoneAcc" prefWidth="131.0" text="Phone" />
+                  <TableColumn fx:id="DateJoinAcc" prefWidth="165.0" text="DateJoin" />
+                  <TableColumn fx:id="BirthDateAcc" prefWidth="158.0" text="Birthday" />
+                  <TableColumn fx:id="FullNameAcc" prefWidth="177.0" text="FullName" />
+                  <TableColumn fx:id="StatusAcc" prefWidth="56.0" text="Status" />
+              </columns>
+            </TableView>
+         </children></Pane>
+   </center>
+</BorderPane>

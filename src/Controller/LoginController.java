@@ -73,7 +73,24 @@ public class LoginController {
 
 					switch (typeUser.getR_ID()) {
 					case 1:
-						helper.AlbertDiaglog.AlbertDiaglog("we will be coming soon");
+						try {
+							setOnline(typeUser.getU_ID());
+							Stage MainFrmAdmin = new Stage();
+							FXMLLoader loaderMainAdmin = new FXMLLoader(getClass().getResource("/res/AdminFrm.fxml"));
+							BorderPane rootMainAdmin = (BorderPane) loaderMainAdmin.load();
+							Scene sceneAdmin = new Scene(rootMainAdmin, 1224, 758);
+							AdminController adminController = loaderMainAdmin.getController();
+							adminController.loadForm();
+							MainFrmAdmin.setScene(sceneAdmin);
+							sceneAdmin.getStylesheets()
+									.add(getClass().getResource("/css/UserMainForm.css").toExternalForm());
+							MainFrmAdmin.setResizable(false);
+							MainFrmAdmin.getIcons().add(new Image("./icon/download.png"));
+							MainFrmAdmin.setTitle("Hazard Music!!!!");
+							MainFrmAdmin.show();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 						break;
 					case 2:
 						try {
@@ -112,7 +129,7 @@ public class LoginController {
 					UserOnline.setU_IP(Inet4Address.getLocalHost().getHostAddress());
 					UserOnline.setU_CheckOnline(true);
 					UserDao.setOnlineForUser(UserOnline);
-					
+
 				} catch (UnknownHostException e) {
 					e.printStackTrace();
 				}

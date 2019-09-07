@@ -9,8 +9,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import Dao.MusicFileDao;
+import Dao.RelationShipDao;
 import Dao.UserDao;
 import Entities.MusicFile;
+import Entities.RelationShipUser;
 import Entities.User;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
@@ -135,8 +137,15 @@ public class UserMainFormController {
 	private Label SingerLb;
 	@FXML
 	private Label Userlb;
-//	@FXML
-//	private ImageView ;
+	@FXML
+	private ImageView noficationButton;
+	@FXML
+	private TableView<User> friendTableview;
+	@FXML
+	private TableColumn<User, String> NameFriendCol;
+	@FXML
+	private TableColumn<User, Boolean> OnlineCol;
+	
 	
 	
 	private String LinkFile;
@@ -153,13 +162,28 @@ public class UserMainFormController {
 		LoadPlayer(mainFrm, typeUser);
 		LoadTableMusicList(typeUser);
 		LoadTabMusic(mainFrm, typeUser);
-		LoadNoficationAndFriendList(mainFrm,typeUser);
+		LoadNoficationAndFriendList( typeUser);
 
 	}
 
-	private void LoadNoficationAndFriendList(Stage mainFrm, User typeUser) {
-	
-		
+	private void LoadNoficationAndFriendList( User typeUser) {
+		noficationButton.setOnMouseClicked((MouseEvent e)->{
+		try {
+			Stage requesFor = new Stage();
+			requesFor.resizableProperty().set(false);
+			requesFor.initStyle(StageStyle.UTILITY);
+			requesFor.initModality(Modality.APPLICATION_MODAL);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/NoficationListFrm.fxml"));
+			BorderPane root = (BorderPane) loader.load();
+			Scene newScence = new Scene(root, 487, 667);
+			NoficationController noficationtFormController = loader.getController();
+			noficationtFormController.loadRequestForm(typeUser);
+			requesFor.setScene(newScence);
+			requesFor.showAndWait();
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+		});
 	}
 
 	private void LoadTabMusic(Stage mainFrm, User typeUser) {
@@ -196,7 +220,36 @@ public class UserMainFormController {
 		SingerSongCol.setCellValueFactory(new PropertyValueFactory<>("M_Singer"));
 		DateSongCol.setCellValueFactory(new PropertyValueFactory<>("M_Date"));
 		ActiveCol.setCellValueFactory(new PropertyValueFactory<>("M_Active"));
+		ActiveCol.setCellFactory(new Callback<TableColumn<MusicFile,Boolean>, TableCell<MusicFile,Boolean>>() {
 
+			@Override
+			public TableCell<MusicFile, Boolean> call(TableColumn<MusicFile, Boolean> arg0) {
+				final TableCell<MusicFile, Boolean> cellC = new TableCell<MusicFile, Boolean>() {
+					private final Label lb = new Label("no ready");
+
+					@Override
+					public void updateItem(Boolean item, boolean empty) {
+						//
+						super.updateItem(item, empty);
+						if (empty) {
+							setGraphic(null);
+						} else {
+							setAlignment(Pos.CENTER);
+							setGraphic(lb);
+							if (item.booleanValue() == true) {
+								lb.setText("ready");
+
+							} else {
+								lb.setText("not ready");
+
+							}
+						}
+					}
+
+				};
+				return cellC;
+			}
+		});
 		MusicUserIUpLoadTable.setItems(listTableUpLoadFile);
 		MusicUserIUpLoadTable.setEditable(false);
 		MusicUserIUpLoadTable.setOnMouseClicked((MouseEvent event) -> {
@@ -207,8 +260,9 @@ public class UserMainFormController {
 						MusicFile inforSong = MusicUserIUpLoadTable.getSelectionModel().getSelectedItem();
 						if (mp != null)
 							mp.stop();
-						playMedia(index, listUpLoadFile);
+						playMedia(index, listUpLoadFile,typeUser);
 						setInforSong(inforSong);
+						PlayMusicControl();
 						if (MusicFileDao.setActiveForSong(inforSong.getM_ID())) {
 							refeshTableUpload(typeUser, MusicUserIUpLoadTable);
 							refeshAllSongTable();
@@ -359,7 +413,7 @@ public class UserMainFormController {
 								BorderPane root = (BorderPane) loader.load();
 								Scene newScence = new Scene(root, 487, 667);
 								RequestController requestFormController = loader.getController();
-								requestFormController.loadRequestForm(requesFor, musicInfor,typeUser);
+								requestFormController.loadRequestForm(requesFor, musicInfor, typeUser);
 								requesFor.setScene(newScence);
 								requesFor.showAndWait();
 							} catch (Exception e2) {
@@ -436,8 +490,8 @@ public class UserMainFormController {
 	}
 
 	private void LoadFiendedList(Stage mainFrm, User typeUser) {
+		loadtableListFriends(typeUser);
 		addFriendButon.setOnMouseClicked(new EventHandler<Event>() {
-
 			@Override
 			public void handle(Event p) {
 				try {
@@ -447,7 +501,7 @@ public class UserMainFormController {
 					userInfor.initModality(Modality.APPLICATION_MODAL);
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/AnotherFriendList.fxml"));
 					AnchorPane root = (AnchorPane) loader.load();
-					Scene newScence = new Scene(root, 839, 717);
+					Scene newScence = new Scene(root, 820, 720);
 					AnotherFriendListController ListFriendsController = loader.getController();
 					ListFriendsController.FriendsListControllerInit(userInfor, typeUser);
 					userInfor.setScene(newScence);
@@ -460,6 +514,68 @@ public class UserMainFormController {
 
 			}
 		});
+	}
+
+	private void loadtableListFriends(User typeUser) {
+		ArrayList<User> listFriend = RelationShipDao.getAllFriendedByIdUser(typeUser.getU_ID());
+		ObservableList<User> list = FXCollections.observableArrayList(listFriend);
+		
+		NameFriendCol.setCellValueFactory(new PropertyValueFactory<>("U_FullName"));
+		OnlineCol.setCellValueFactory(new PropertyValueFactory<User,Boolean>("U_CheckOnline"));
+		OnlineCol.setCellFactory(new Callback<TableColumn<User,Boolean>, TableCell<User,Boolean>>() {
+
+			@Override
+			public TableCell<User, Boolean> call(TableColumn<User, Boolean> arg0) {
+				final TableCell<User, Boolean> cellC = new TableCell<User, Boolean>() {
+					private final Label lb = new Label("no ready");
+					@Override
+					public void updateItem(Boolean item, boolean empty) {
+						super.updateItem(item, empty);
+						if (empty) {
+							setGraphic(null);
+						} else {
+							setAlignment(Pos.CENTER);
+							setGraphic(lb);
+							if (item.booleanValue() == true) {
+								lb.setText("Online");
+
+							} else {
+								lb.setText("Offline");
+
+							}
+						}
+					}
+
+				};
+				return cellC;
+			}
+			
+		});
+		friendTableview.setItems(list);
+		friendTableview.setEditable(false);
+		friendTableview.setOnMouseClicked((MouseEvent e)->{
+			if(friendTableview.getSelectionModel().getSelectedItem()!= null) {
+				if(e.getClickCount()>1) {
+					User userInfor = friendTableview.getSelectionModel().getSelectedItem();
+					try {
+						Stage inforFor = new Stage();
+						inforFor.resizableProperty().set(false);
+						inforFor.initStyle(StageStyle.UTILITY);
+						inforFor.initModality(Modality.APPLICATION_MODAL);
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("/res/InforFriends2.fxml"));
+						AnchorPane root = (AnchorPane) loader.load();
+						Scene newScence = new Scene(root, 820, 718);
+						FriendInforController2 friendInforController2 = loader.getController();
+						friendInforController2.loadInforFriedsForm2(inforFor, userInfor);
+						inforFor.setScene(newScence);
+						inforFor.showAndWait();
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
+			}
+		});
+		
 	}
 
 	private void refeshAllSongTable() {
@@ -609,31 +725,37 @@ public class UserMainFormController {
 	}
 //playfortable
 
-	public void playMedia(int index, ArrayList<MusicFile> listUpLoadFile) {
+	public void playMedia(int index, ArrayList<MusicFile> listUpLoadFile, User typeUser) {
 		int indexSong = index;
 		Path getpath = Paths.get(listUpLoadFile.get(indexSong).getM_LinkFile());
 		me = new Media(getpath.toUri().toString());
 		mp = new MediaPlayer(me);
 		status = mp.getStatus();
 		mp.play();
-		PlayMusicControl();
+		setInforSong(listUpLoadFile.get(indexSong));
+		if (MusicFileDao.setActiveForSong(listUpLoadFile.get(indexSong).getM_ID())) {
+			refeshTableUpload(typeUser, MusicUserIUpLoadTable);
+			refeshAllSongTable();
+		}
 
 		mp.setOnEndOfMedia(new Runnable() {
 			@Override
 			public void run() {
 				mp.stop();
-				playMedia(indexSong + 1, listUpLoadFile);
+				playMedia(indexSong + 1, listUpLoadFile, typeUser);
 				return;
 			}
 		});
 		nextButton.setOnMouseClicked((MouseEvent e) -> {
 			mp.stop();
-			playMedia(indexSong + 1, listUpLoadFile);
+			playMedia(indexSong + 1, listUpLoadFile, typeUser);
 		});
 		behindButton.setOnMouseClicked((MouseEvent e) -> {
 			mp.stop();
-			playMedia(indexSong - 1, listUpLoadFile);
+			playMedia(indexSong - 1, listUpLoadFile, typeUser);
 		});
+		PlayMusicControl();
+		
 	}
 
 	private void PlayMusicControl() {
@@ -667,7 +789,7 @@ public class UserMainFormController {
 
 				}
 			}
-
+			
 		});
 		// time slide
 		MusicTimeSlide.setOnMousePressed(event -> {

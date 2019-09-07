@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 import Dao.UserDao;
+import Entities.RelationShipUser;
 import Entities.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -78,7 +79,7 @@ public class InforUserFormController {
 					if(data == null) {
 						uploadUser.setU_Image(userInfo.getU_Image());
 					}else {
-						uploadUser.setU_Image(data);
+						uploadUser.setU_Image(data);	
 					}
 					
 					uploadUser.setU_Adress(AdressTextField.getText());
@@ -118,4 +119,5 @@ public class InforUserFormController {
 		description.setText(userInfo.getU_Bio());
 	}
 
+	
 }

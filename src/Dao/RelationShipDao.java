@@ -2,9 +2,11 @@ package Dao;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import ConnetionLib.ConnectionSQL;
 import Entities.MusicFile;
+import Entities.RelationShipUser;
 import Entities.User;
 
 public class RelationShipDao {
@@ -43,6 +45,74 @@ public class RelationShipDao {
 			return false;
 		}
 
+	}
+
+	public static ArrayList<RelationShipUser> getNofiCationFromUser1(int u_ID) {
+		ArrayList<RelationShipUser> list = new ArrayList<>();
+		try {
+			Object[] param = {u_ID};
+			ResultSet rs = ConnectionSQL.CallProc("getAllRelationShipNonAccept", param );
+			while(rs.next()) {
+				RelationShipUser info = new RelationShipUser();
+				User userinfor1 = new User();
+				userinfor1.setU_FullName(rs.getString(1));
+				info.setUser1(userinfor1);
+				info.setU_FullName1(rs.getString(1));
+				info.setU_ID1(rs.getInt(2));
+				info.setU_ID2(rs.getInt(3));
+				info.setRL_DateAdd(rs.getDate(4));
+				info.setDescription("messerger to:	"+rs.getString(5));
+				list.add(info);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public static boolean AcceptRelationShip(RelationShipUser infor) {
+		try {
+			Object[] param1 = {infor.getU_ID1(), infor.getU_ID2()};
+			Object[] param2 = {infor.getU_ID2(), infor.getU_ID1()};
+			if (ConnectionSQL.updateStoredOrCreate("AcceptRelationShip1", param1)
+					&& ConnectionSQL.updateStoredOrCreate("AcceptRelationShip2", param2)) {
+				return true;
+
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+
+	public static ArrayList<User> getAllFriendedByIdUser(int u_ID) {
+		ArrayList<User> list = new ArrayList<>();
+		try {
+			Object[] param = {u_ID};
+			ResultSet rs = ConnectionSQL.CallProc("getAllFiended", param);
+			while(rs.next()) {
+				User user = new User();
+				user.setU_ID(rs.getInt(1));
+				user.setU_Name(rs.getString(2));
+				user.setU_FullName(rs.getString(3));
+				user.setU_Country(rs.getString(4));
+				user.setU_Adress(rs.getString(5));
+				user.setU_BirthDate(rs.getDate(6));
+				user.setU_DateJoin(rs.getDate(7));
+				user.setU_Image(rs.getBytes(8));
+				user.setU_Mail(rs.getString(9));
+				user.setU_Bio(rs.getString(10));
+				user.setU_IP(rs.getString(11));
+				user.setU_CheckOnline(rs.getBoolean(12));
+				list.add(user);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
 	}
 
 }

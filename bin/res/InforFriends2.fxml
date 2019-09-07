@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="726.0" prefWidth="827.0" style="-fx-background-color: #2f0c7a;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FriendInforController2">
+   <children>
+      <BorderPane prefHeight="718.0" prefWidth="820.0">
+         <right>
+            <Pane prefHeight="715.0" prefWidth="391.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="ListView" layoutX="-2.0" layoutY="90.0" prefHeight="438.0" prefWidth="393.0">
+                    <columns>
+                      <TableColumn fx:id="nameSongCol" prefWidth="120.0000274181366" text="Name Song" />
+                      <TableColumn fx:id="SingerCol" prefWidth="107.20001220703125" text="Singer" />
+                        <TableColumn fx:id="dateAddColl" prefWidth="78.39997863769531" text="Date Add" />
+                        <TableColumn fx:id="requestCol" prefWidth="92.0" text="request" />
+                    </columns>
+                  </TableView>
+               </children></Pane>
+         </right>
+         <center>
+            <Pane prefHeight="696.0" prefWidth="501.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane layoutX="24.0" layoutY="196.0" prefHeight="405.0" prefWidth="339.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="66.59998168945313" minHeight="10.0" prefHeight="61.80000610351563" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="66.59998168945313" minHeight="10.0" prefHeight="61.80000610351563" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="66.59998168945313" minHeight="10.0" prefHeight="61.80000610351563" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="130.8000244140625" minHeight="3.6000122070312557" prefHeight="59.399993896484375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="361.5999816894531" minHeight="10.0" prefHeight="182.80006713867186" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="112.80001220703127" minHeight="10.0" prefHeight="106.99993286132815" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Birth date" textFill="#f5f0f0" GridPane.rowIndex="2" />
+                        <Label text="Date Join" textFill="#f5f0f0" GridPane.rowIndex="3" />
+                        <Label text="Description" textFill="#f5f0f0" GridPane.rowIndex="4" />
+                        <Label fx:id="brthDateLb" prefHeight="26.0" prefWidth="104.0" text="dd-mm-yyyy" textFill="#f5f4f4" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="dateJoinLb" prefHeight="28.0" prefWidth="103.0" text="dd-mm-yyyy" textFill="#f5f4f4" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="descriptionLb" prefHeight="159.0" prefWidth="191.0" text="Label" textFill="#f5f4f4" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="Mail" textFill="#faf8f8" GridPane.rowIndex="5" />
+                        <Label fx:id="mailLb" prefHeight="22.0" prefWidth="174.0" text="exmaple@mail.com" textFill="#fdf9f9" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label text="Address" textFill="#f5f0f0" />
+                        <Label text="Country" textFill="#f5f0f0" GridPane.rowIndex="1" />
+                        <Label fx:id="AdressLb" text="HCM" textFill="#f5f0f0" GridPane.columnIndex="1" />
+                        <Label fx:id="countryLb" text="VietNamese" textFill="#f5f0f0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <ImageView fx:id="avatarUser" fitHeight="77.0" fitWidth="109.0" layoutX="24.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/emtyIcon.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="119.0" layoutY="154.0" text="ID:" textFill="#f5f0f0" />
+                  <Label fx:id="userNameLb" layoutX="157.0" layoutY="154.0" text="akakshyki" textFill="#f5f4f4">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="119.0" layoutY="95.0" text="Full name: " textFill="#f5f0f0" />
+                  <Label fx:id="fullNameLb" layoutX="208.0" layoutY="91.0" prefHeight="25.0" prefWidth="145.0" text="hoang" textFill="#f5f4f4">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </center></BorderPane>
+   </children>
+</AnchorPane>

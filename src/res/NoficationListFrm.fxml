@@ -1,22 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-
-<BorderPane prefHeight="442.0" prefWidth="433.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controller.NoficationController">
-   <center>
-      <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
+<BorderPane prefHeight="601.0" prefWidth="543.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.NoficationController">
    <bottom>
-      <Pane prefHeight="61.0" prefWidth="434.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="86.0" layoutY="18.0" mnemonicParsing="false" text="Button" />
-            <ChoiceBox layoutX="252.0" layoutY="18.0" prefWidth="150.0" />
-         </children>
-      </Pane>
+      <Pane prefHeight="62.0" prefWidth="434.0" BorderPane.alignment="CENTER" />
    </bottom>
+   <top>
+      <TabPane prefHeight="451.0" prefWidth="506.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Add Friend">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="addFriendsList" prefHeight="421.0" prefWidth="542.0">
+                          <columns>
+                              <TableColumn fx:id="UserNameCol" prefWidth="75.0" text="From" />
+                            <TableColumn fx:id="DateAddFriendCol" prefWidth="75.0" text="Date" />
+                            <TableColumn fx:id="MessengerCol" minWidth="0.79998779296875" prefWidth="391.1999877929687" text="Messenger" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Request">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="-2.0" prefHeight="424.0" prefWidth="549.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="User" />
+                            <TableColumn prefWidth="84.800048828125" text="File" />
+                              <TableColumn prefWidth="75.0" text="Date" />
+                              <TableColumn prefWidth="165.59999084472656" text="messenger" />
+                              <TableColumn prefWidth="103.20000610351565" text="Buttom" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </top>
 </BorderPane>

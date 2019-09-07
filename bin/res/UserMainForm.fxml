@@ -2,7 +2,6 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
@@ -70,7 +69,6 @@
                         </ImageView>
                      </children>
                   </GridPane>
-                  <ListView layoutY="206.0" prefHeight="150.0" prefWidth="364.0" />
                   <TextField layoutX="15.0" layoutY="141.0" />
                   <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="181.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -147,6 +145,12 @@
                     </tabs>
                   </TabPane>
                   <VBox fx:id="showListviewPane" layoutX="256.0" layoutY="117.0" prefHeight="200.0" prefWidth="100.0" />
+                  <TableView fx:id="friendTableview" layoutX="1.0" layoutY="206.0" prefHeight="233.0" prefWidth="359.0">
+                    <columns>
+                      <TableColumn fx:id="NameFriendCol" prefWidth="252.80004274845123" text="name" />
+                      <TableColumn fx:id="OnlineCol" prefWidth="106.39996337890625" text="online" />
+                    </columns>
+                  </TableView>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="766.0" prefWidth="810.0">

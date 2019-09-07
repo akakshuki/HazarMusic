@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import ConnetionLib.ConnectionSQL;
 import Entities.MusicFile;
+import Entities.RelationShipUser;
 import Entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -93,7 +94,6 @@ public class MusicFileDao {
 		
 		ArrayList<MusicFile> list = new ArrayList<MusicFile>();
 		try (Stream<Path> filePathStream = Files.walk(Paths.get("./audio/"))) {
-			
 			filePathStream.forEach(filePath -> {
 				MusicFile file = new MusicFile();
 				file.setM_Name(filePath.getFileName().toString());
@@ -147,6 +147,32 @@ public class MusicFileDao {
 			return false;
 		}
 		
+	}
+
+	public static ArrayList<MusicFile> getMyUpLoadListByUser(RelationShipUser infor) {
+		ArrayList<MusicFile> list = new ArrayList<>();
+		ConnectionSQL conn = new  ConnectionSQL();
+		try {
+			Object[] param = {
+				infor.getU_ID1()	
+			};
+			ResultSet rs = conn.CallProc("LoadMuscicFileByIdUser", param);
+			while(rs.next()) {
+				MusicFile file = new MusicFile();
+				file.setM_ID(rs.getInt(1));
+				file.setM_Name(rs.getString(2));
+				file.setM_Singer(rs.getString(3));
+				file.setM_Description(rs.getString(4));
+				file.setM_Date(rs.getDate(6));
+				file.setM_LinkFile(rs.getString(8));
+				file.setM_Active(rs.getBoolean(9));
+				file.setU_Name(rs.getString(10));
+				list.add(file);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 }

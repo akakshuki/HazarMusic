@@ -6,24 +6,20 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
 
-<BorderPane prefHeight="601.0" prefWidth="543.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.NoficationController">
-   <bottom>
-      <Pane prefHeight="62.0" prefWidth="434.0" BorderPane.alignment="CENTER" />
-   </bottom>
-   <top>
-      <TabPane prefHeight="451.0" prefWidth="506.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+<BorderPane prefHeight="658.0" prefWidth="692.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.NoficationController">
+   <center>
+      <TabPane prefHeight="602.0" prefWidth="543.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab text="Add Friend">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="addFriendsList" prefHeight="421.0" prefWidth="542.0">
+                        <TableView fx:id="addFriendsList" prefHeight="630.0" prefWidth="692.0">
                           <columns>
                               <TableColumn fx:id="UserNameCol" prefWidth="75.0" text="From" />
-                            <TableColumn fx:id="DateAddFriendCol" prefWidth="75.0" text="Date" />
-                            <TableColumn fx:id="MessengerCol" minWidth="0.79998779296875" prefWidth="391.1999877929687" text="Messenger" />
+                            <TableColumn fx:id="DateAddFriendCol" prefWidth="125.60001373291016" text="Date" />
+                            <TableColumn fx:id="MessengerCol" minWidth="0.79998779296875" prefWidth="491.1999206542969" text="Messenger" />
                           </columns>
                         </TableView>
                      </children>
@@ -32,15 +28,15 @@
           </Tab>
           <Tab text="Request">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="526.0" prefWidth="543.0">
                      <children>
-                        <TableView layoutX="-2.0" prefHeight="424.0" prefWidth="549.0">
+                        <TableView fx:id="requestSentFileTable" layoutX="-4.0" layoutY="-2.0" prefHeight="310.0" prefWidth="699.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="User" />
-                            <TableColumn prefWidth="84.800048828125" text="File" />
-                              <TableColumn prefWidth="75.0" text="Date" />
-                              <TableColumn prefWidth="165.59999084472656" text="messenger" />
-                              <TableColumn prefWidth="103.20000610351565" text="Buttom" />
+                            <TableColumn fx:id="UserCol" prefWidth="116.8000168800354" text="User" />
+                            <TableColumn fx:id="FileNameCol" prefWidth="104.00006866455078" text="File" />
+                              <TableColumn fx:id="DateRequestCol" prefWidth="125.5999755859375" text="Date" />
+                              <TableColumn fx:id="MessengerRequestCol" prefWidth="188.80001831054688" text="messenger" />
+                              <TableColumn fx:id="AcceptButtonCol" prefWidth="164.800048828125" text="Button" />
                           </columns>
                         </TableView>
                      </children>
@@ -49,5 +45,5 @@
           </Tab>
         </tabs>
       </TabPane>
-   </top>
+   </center>
 </BorderPane>

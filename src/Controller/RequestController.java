@@ -71,7 +71,7 @@ public class RequestController {
 					inforFor.initModality(Modality.APPLICATION_MODAL);
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("/res/SentRequestForm.fxml"));
 					AnchorPane root = (AnchorPane) loader.load();
-					Scene newScence = new Scene(root, 820, 718);
+					Scene newScence = new Scene(root, 400, 591);
 					SentRequestController sentRequestController = loader.getController();
 					sentRequestController.loadInforFriedsForm(typeUser, inforSong);
 					inforFor.setScene(newScence);

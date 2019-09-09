@@ -175,7 +175,7 @@ public class UserMainFormController {
 			requesFor.initModality(Modality.APPLICATION_MODAL);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/NoficationListFrm.fxml"));
 			BorderPane root = (BorderPane) loader.load();
-			Scene newScence = new Scene(root, 487, 667);
+			Scene newScence = new Scene(root, 692, 658);
 			NoficationController noficationtFormController = loader.getController();
 			noficationtFormController.loadRequestForm(typeUser);
 			requesFor.setScene(newScence);

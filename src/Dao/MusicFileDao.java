@@ -174,5 +174,21 @@ public class MusicFileDao {
 		}
 		return list;
 	}
+
+	public static boolean deleteMusic(int m_ID) {
+		Object[] param = {m_ID};
+		try {
+			if(ConnectionSQL.updateStoredOrCreate("deleeMusicUploadByUser", param)) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); 
+			return false;
+			
+		}
+	
+	}
 	
 }

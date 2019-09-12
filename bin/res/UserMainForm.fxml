@@ -20,11 +20,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="734.0" prefWidth="1209.0" stylesheets="@/css/UserMainForm.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserMainFormController">
+<BorderPane prefHeight="734.0" prefWidth="1209.0" style="-fx-background-color: #83B799;" stylesheets="@/css/UserMainForm.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserMainFormController">
    <center>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="749.0" prefWidth="1153.0" BorderPane.alignment="CENTER">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="320.0" style="-fx-background-color: #1f0940;" stylesheets="@../css/UserMainForm.css">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="320.0" style="-fx-background-color: #03203e;" stylesheets="@../css/UserMainForm.css">
                <children>
                   <Pane layoutX="66.0" layoutY="14.0" prefHeight="39.0" prefWidth="190.0" style="-fx-border-color: #c1c926;">
                      <children>
@@ -225,7 +225,7 @@
                               <Label fx:id="OpenNewFilelb" alignment="CENTER_RIGHT" layoutX="5.0" layoutY="14.0" prefHeight="26.0" prefWidth="117.0" text="Open  file" textFill="#ede9e9" />
                            </children></Pane>
                      </right></BorderPane>
-                  <BorderPane layoutX="-1.0" layoutY="1.0" prefHeight="614.0" prefWidth="857.0" style="-fx-background-color: #1f0940;">
+                  <BorderPane layoutX="-1.0" layoutY="1.0" prefHeight="614.0" prefWidth="857.0" style="-fx-background-color: #03203e;">
                      <top>
                         <Pane prefHeight="47.0" prefWidth="810.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                            <children>

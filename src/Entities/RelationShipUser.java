@@ -10,7 +10,7 @@ public class RelationShipUser {
 	private User User2;
 	private String U_FullName1;
 	private String U_FullName2;
-	private boolean RL_Status;
+	private boolean RL_Status; 	
 	private boolean RL_AcceptAction;
 	private Date RL_DateAdd;
 	private String Description;

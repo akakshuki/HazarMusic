@@ -96,6 +96,23 @@ public class RelationShipDao {
 			while(rs.next()) {
 				User user = new User();
 				user.setU_ID(rs.getInt(1));
+				user.setU_FullName(rs.getString(2));
+				user.setU_CheckOnline(rs.getBoolean(3));
+				list.add(user);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return list;
+	}
+	public static User getFriendedInfoByIdUser(int u_ID) {
+		User user = new User();
+		try {
+			Object[] param = {u_ID};
+			ResultSet rs = ConnectionSQL.CallProc("getAllFiendedInfo", param);
+			
+			while(rs.next()) {
+				user.setU_ID(rs.getInt(1));
 				user.setU_Name(rs.getString(2));
 				user.setU_FullName(rs.getString(3));
 				user.setU_Country(rs.getString(4));
@@ -107,12 +124,13 @@ public class RelationShipDao {
 				user.setU_Bio(rs.getString(10));
 				user.setU_IP(rs.getString(11));
 				user.setU_CheckOnline(rs.getBoolean(12));
-				list.add(user);
+				
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return list;
+		return user;
+		
 	}
 
 }

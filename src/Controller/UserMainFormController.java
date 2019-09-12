@@ -7,12 +7,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import Dao.MusicFileDao;
 import Dao.RelationShipDao;
+import Dao.RequestSentFileDao;
 import Dao.UserDao;
 import Entities.MusicFile;
 import Entities.RelationShipUser;
+import Entities.RequestSentFile;
 import Entities.User;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
@@ -163,7 +167,17 @@ public class UserMainFormController {
 		LoadTableMusicList(typeUser);
 		LoadTabMusic(mainFrm, typeUser);
 		LoadNoficationAndFriendList( typeUser);
+		LoadFileAcceptRequest(typeUser);
 
+	}
+
+	private void LoadFileAcceptRequest(User typeUser) {
+		ArrayList<RequestSentFile> listRequest = RequestSentFileDao.getAllAcceptRequestByUser(typeUser.getU_ID());
+		for(RequestSentFile rs : listRequest) {
+			if(rs.getUserTo().isU_CheckOnline()==true) {
+			 helper.SocketGetFile.socketGetFile(rs);
+			}
+		}
 	}
 
 	private void LoadNoficationAndFriendList( User typeUser) {
@@ -519,6 +533,18 @@ public class UserMainFormController {
 	private void loadtableListFriends(User typeUser) {
 		ArrayList<User> listFriend = RelationShipDao.getAllFriendedByIdUser(typeUser.getU_ID());
 		ObservableList<User> list = FXCollections.observableArrayList(listFriend);
+		friendTableview.setItems(list);
+		new Timer().schedule(new TimerTask() {
+		    @Override
+		    public void run() {
+		        try {
+		        	refeshFriendList(typeUser);
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+		}, 0, 3000);
+
 		
 		NameFriendCol.setCellValueFactory(new PropertyValueFactory<>("U_FullName"));
 		OnlineCol.setCellValueFactory(new PropertyValueFactory<User,Boolean>("U_CheckOnline"));
@@ -551,7 +577,7 @@ public class UserMainFormController {
 			}
 			
 		});
-		friendTableview.setItems(list);
+			friendTableview.setItems(list);
 		friendTableview.setEditable(false);
 		friendTableview.setOnMouseClicked((MouseEvent e)->{
 			if(friendTableview.getSelectionModel().getSelectedItem()!= null) {
@@ -566,7 +592,7 @@ public class UserMainFormController {
 						AnchorPane root = (AnchorPane) loader.load();
 						Scene newScence = new Scene(root, 820, 718);
 						FriendInforController2 friendInforController2 = loader.getController();
-						friendInforController2.loadInforFriedsForm2(inforFor, userInfor);
+						friendInforController2.loadInforFriedsForm2(inforFor, userInfor,typeUser);
 						inforFor.setScene(newScence);
 						inforFor.showAndWait();
 					} catch (Exception e2) {
@@ -913,6 +939,13 @@ public class UserMainFormController {
 			helper.ImageChooser.SaveImage("./src/icon/speaker1.png", MuteButton);
 			isMute = true;
 		}
-
+		
+	}
+	private TableView<User> refeshFriendList(User typeUser){
+		ObservableList<User> list = null;
+		list = FXCollections.observableArrayList(RelationShipDao.getAllFriendedByIdUser(typeUser.getU_ID()));
+		
+		friendTableview.setItems(list);
+		return friendTableview;
 	}
 }

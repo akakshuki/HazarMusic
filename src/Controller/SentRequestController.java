@@ -44,9 +44,9 @@ public class SentRequestController {
 				sent.setU_IDFrom(typeUser.getU_ID());
 				sent.setU_IDTo(inforSong.getU_ID());
 				sent.setRQ_Date(Date.valueOf(LocalDate.now()));
-				sent.setRQ_Messenger(messenger.getText());
-				sent.setRQ_Port(String.valueOf(helper.AddLabel.ramdomnumber(9999, 1000)));
-								if(RequestSentFileDao.SentNewRequest(sent)) {
+				sent.setRQ_MessengerFrom(messenger.getText());
+				sent.setRQ_Port(helper.AddLabel.ramdomnumber(9999, 3000));
+				if(RequestSentFileDao.SentNewRequest(sent)) {
 					helper.AlbertDiaglog.InfoDiaglog("sent request sussces");
 				}else {
 					helper.AlbertDiaglog.AlbertDiaglog("sent request FAIL");

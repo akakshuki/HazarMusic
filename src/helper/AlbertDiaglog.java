@@ -1,18 +1,16 @@
 package helper;
 
+
+
+
 import java.util.Optional;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+
 
 public class AlbertDiaglog {
 	public static void AlbertDiaglog(String mesenger) {
@@ -40,4 +38,11 @@ public class AlbertDiaglog {
 		
         return messenger.getText().toString();
  }
+	public static boolean AwnserDialog(Alert.AlertType alertType, String statement) {
+		Alert alert = new Alert(alertType, statement);
+	    alert.getButtonTypes().addAll(ButtonType.CANCEL);
+	    Optional<ButtonType> choose = alert.showAndWait();
+	    return choose.get() == ButtonType.OK;
+	
+	}
 }

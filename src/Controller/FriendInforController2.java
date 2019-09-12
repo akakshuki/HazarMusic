@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import Dao.MusicFileDao;
-
+import Dao.RelationShipDao;
 import Entities.MusicFile;
 import Entities.User;
 import javafx.collections.FXCollections;
@@ -51,8 +51,8 @@ public class FriendInforController2 {
 	private TableColumn<MusicFile, Date> dateAddColl;
 	@FXML
 	private TableColumn<MusicFile, Void> requestCol;
-	
-	public void loadInforFriedsForm2(Stage inforFor, User infor) {
+
+	public void loadInforFriedsForm2(Stage inforFor, User infor, User typeUser) {
 		loadInforFiends(infor);
 		loadMusicList(infor);
 	}
@@ -104,15 +104,16 @@ public class FriendInforController2 {
 	}
 
 	private void loadInforFiends(User infor) {
-		fullNameLb.setText(infor.getU_FullName());
-		userNameLb.setText(infor.getU_Name());
-		brthDateLb.setText(infor.getU_BirthDate().toString());
-		dateJoinLb.setText(infor.getU_DateJoin().toString());
-		countryLb.setText(infor.getU_Country());
-		AdressLb.setText(infor.getU_Adress());
-		helper.ImageChooser.DisplayyyyyImage(infor.getU_Image(), avatarUser);
-		mailLb.setText(infor.getU_Mail());
-		descriptionLb.setText(infor.getU_Bio());	
+		User inforfr = RelationShipDao.getFriendedInfoByIdUser(infor.getU_ID());
+		fullNameLb.setText(inforfr.getU_FullName());
+		userNameLb.setText(inforfr.getU_Name());
+		brthDateLb.setText(inforfr.getU_BirthDate().toString());
+		dateJoinLb.setText(inforfr.getU_DateJoin().toString());
+		countryLb.setText(inforfr.getU_Country());
+		AdressLb.setText(inforfr.getU_Adress());
+		helper.ImageChooser.DisplayyyyyImage(inforfr.getU_Image(), avatarUser);
+		mailLb.setText(inforfr.getU_Mail());
+		descriptionLb.setText(inforfr.getU_Bio());	
 	}
 	
 

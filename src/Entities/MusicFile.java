@@ -13,7 +13,6 @@ public class MusicFile {
 	private int U_ID;
 	private User user;
 	private boolean M_Active;
-	
 	private String U_Name;
 	private String U_Adress;
 	private String U_Country;

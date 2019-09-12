@@ -16,10 +16,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -51,8 +53,12 @@ public class NoficationController {
 	private TableColumn<RequestSentFile, String> MessengerRequestCol;
 	@FXML
 	private TableColumn<RequestSentFile, Void> AcceptButtonCol;
-	
-	
+	@FXML
+	private Label 	fullNameLb,userNameLb,AddressLb,userMailLb,OnlineLb,songName,singerlb;
+	@FXML
+	private ImageView avatarView;
+	@FXML
+	private Button sentButton;
 	
 	
 	public void loadRequestForm(User typeUser) {
@@ -62,21 +68,30 @@ public class NoficationController {
 
 	private void LoadListNoficationOfRequestFile(int u_ID) {
 		ArrayList<RequestSentFile> listNoficationRequestFile = RequestSentFileDao.getNofiCationSentFileFromUser(u_ID);
+		ArrayList<RequestSentFile> listNoficationAcceptRequestFile = RequestSentFileDao.getNofiCationAcceptSentFileFromUser(u_ID);
+		listNoficationRequestFile.addAll(listNoficationAcceptRequestFile);
 		ObservableList<RequestSentFile> list = FXCollections.observableArrayList(listNoficationRequestFile);
 		UserCol.setCellValueFactory(new PropertyValueFactory<>("U_FullNameFrom"));
 		FileNameCol.setCellValueFactory(new PropertyValueFactory<>("M_Name"));
 		DateRequestCol.setCellValueFactory(new PropertyValueFactory<>("RQ_Date"));
-		MessengerRequestCol.setCellValueFactory(new PropertyValueFactory<>("RQ_Messenger"));
+		MessengerRequestCol.setCellValueFactory(new PropertyValueFactory<>("RQ_MessengerFrom"));
 		AcceptButtonCol.setCellFactory(new Callback<TableColumn<RequestSentFile,Void>, TableCell<RequestSentFile,Void>>() {
 			
 			@Override
 			public TableCell<RequestSentFile, Void> call(TableColumn<RequestSentFile, Void> arg0) {
 				final TableCell<RequestSentFile, Void> request = new TableCell<RequestSentFile, Void>() {
+
 					private final Button acceptRequestButton = new Button("Accept");
 					{
+
 						acceptRequestButton.setOnAction((ActionEvent e) -> {
-								
-							
+							RequestSentFile info = getTableView().getItems().get(getIndex());
+							String messenger = helper.AlbertDiaglog.TextDialog();	
+							if(RequestSentFileDao.AcceptRequestSentFile(info,messenger)) {
+								helper.AlbertDiaglog.InfoDiaglog("success");
+							}else {
+								helper.AlbertDiaglog.AlbertDiaglog("Fail. Try again");
+							}
 						});
 
 					}
@@ -89,6 +104,10 @@ public class NoficationController {
 							setGraphic(null);
 						} else {
 							setGraphic(acceptRequestButton);
+							RequestSentFile infor= getTableView().getItems().get(getIndex());
+							if(infor.getRQ_Accept()) {
+								acceptRequestButton.setDisable(true);
+							}
 						}
 					}
 				};
@@ -98,6 +117,40 @@ public class NoficationController {
 		
 		
 		requestSentFileTable.setItems(list);
+		requestSentFileTable.setOnMouseClicked((MouseEvent e)->{
+			if(requestSentFileTable.getSelectionModel().getSelectedItem()!= null) {
+				if(e.getClickCount()>1) {
+					RequestSentFile infor = requestSentFileTable.getSelectionModel().getSelectedItem();
+					fullNameLb.setText(infor.getUserFrom().getU_FullName());
+					userNameLb.setText(infor.getUserFrom().getU_Name());
+					AddressLb.setText(infor.getUserFrom().getU_Adress());
+					userMailLb.setText(infor.getUserFrom().getU_Mail());
+					songName.setText(infor.getMusicFile().getM_Name());
+					singerlb.setText(infor.getMusicFile().getM_Singer());
+					if(infor.getUserFrom().isU_CheckOnline()) {
+						OnlineLb.setText("Online");
+					}else {
+						OnlineLb.setText("Offline");
+					}
+					helper.ImageChooser.DisplayyyyyImage(infor.getUserFrom().getU_Image(),avatarView);
+					if(infor.getRQ_Accept()==false||infor.getM_ID()==0) {
+						sentButton.setDisable(true);
+					}else {
+						sentButton.setDisable(false);
+					}
+					sentButton.setOnAction((ActionEvent e1)->{
+						//RequestSentFile inforReQuest = RequestSentFileDao.getInforRequest(infor);
+						if(RequestSentFileDao.setSendingFile(infor)) {
+							Thread newthread = helper.SocketSentFile.SocketSentFile(infor.getRQ_Port(), infor, infor.getMusicFile().getM_LinkFile());
+							newthread.start();
+							helper.AlbertDiaglog.InfoDiaglog("wait to sent file success");
+							RequestSentFileDao.setSendingFile(infor);
+
+						}
+					});
+				}
+			}
+		});
 	}
 
 	private void loadListNofiCationOfUser(int u_ID) {

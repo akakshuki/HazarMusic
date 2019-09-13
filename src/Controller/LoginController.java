@@ -34,7 +34,23 @@ public class LoginController {
 	private Label resetPasswordBtn;
 
 	public void LoginOn(Stage mainFrm, BorderPane mainBorderPane) {
+		resetPasswordBtn.setOnMouseClicked(new EventHandler<Event>() {
 
+			@Override
+			public void handle(Event arg0) {
+				try {
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/res/ResetPassworkFrm.fxml"));
+					Parent root = (Parent) loader.load();
+					ResetPassworkController controller = loader.getController();
+					mainBorderPane.setCenter(root);
+					mainFrm.setResizable(false);
+					controller.init(mainFrm,mainBorderPane);
+					} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
+			}
+		});
 		signUpBtn.setOnMouseClicked(new EventHandler<Event>() {
 			@Override
 			public void handle(Event e) {
@@ -70,7 +86,7 @@ public class LoginController {
 					LoginUser.setU_Name(userNameTextField.getText());
 					LoginUser.setU_Password(passwordTextfield.getText());
 					User typeUser = UserDao.Login(LoginUser);
-
+					
 					switch (typeUser.getR_ID()) {
 					case 1:
 						try {
@@ -91,6 +107,7 @@ public class LoginController {
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
+						mainForm.close();
 						break;
 					case 2:
 						try {
@@ -115,6 +132,7 @@ public class LoginController {
 						}
 						mainForm.close();
 						break;
+						
 					default:
 						CheckLogin.setText("User or Password is NOT correct... Try again! ><");
 					}

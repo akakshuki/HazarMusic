@@ -73,7 +73,7 @@ public class InforUserFormController {
 	private TableColumn<MusicFile, Date> dateAddCol;
 	@FXML
 	private TableColumn<MusicFile, Void> buttonCol;
-
+	
 	private byte[] data;
 
 	public void InforUserControllerInit(Stage userInform, User userInfo) {

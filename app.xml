@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<connectionString>jdbc:sqlserver://localhost:1433;databaseName=HazardMusic;user=sa;password=123456</connectionString>
+<connectionString>jdbc:sqlserver://HazardMusic.mssql.somee.com;databaseName=HazardMusic;user=akakshuki_SQLLogin_1;password=dfn5qkqf3p</connectionString>

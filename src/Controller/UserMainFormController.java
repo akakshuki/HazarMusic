@@ -149,7 +149,8 @@ public class UserMainFormController {
 	private TableColumn<User, String> NameFriendCol;
 	@FXML
 	private TableColumn<User, Boolean> OnlineCol;
-	
+	@FXML
+	private Button reloadButton;
 	
 	
 	private String LinkFile;
@@ -370,6 +371,7 @@ public class UserMainFormController {
 	}
 
 	private void LoadTableMusicList(User typeUser) {
+		
 		ObservableList<MusicFile> listAllMusic = MusicFileDao.ListGetAllMusic();
 		M_NameCol.setCellValueFactory(new PropertyValueFactory<MusicFile, String>("M_Name"));
 		M_SingerCol.setCellValueFactory(new PropertyValueFactory<MusicFile, String>("M_Singer"));
@@ -454,6 +456,7 @@ public class UserMainFormController {
 
 			}
 		});
+		
 		MusicListTable.setItems(listAllMusic);
 		MusicListTable.setEditable(false);
 
@@ -477,6 +480,9 @@ public class UserMainFormController {
 					UpLoadMusicContoller.UpLoadMusicContollerInit(upLoadFileForm, typeUser);
 					upLoadFileForm.setScene(newScence);
 					upLoadFileForm.showAndWait();
+					if(!upLoadFileForm.isShowing()) {
+						refreshMusicList();
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -564,7 +570,7 @@ public class UserMainFormController {
 							setGraphic(lb);
 							if (item.booleanValue() == true) {
 								lb.setText("Online");
-
+								
 							} else {
 								lb.setText("Offline");
 
@@ -947,5 +953,15 @@ public class UserMainFormController {
 		
 		friendTableview.setItems(list);
 		return friendTableview;
+	}
+	private TableView<MusicFile> refreshMusicList(){
+		
+		ObservableList<MusicFile> listAllMusic = null;
+		listAllMusic =MusicFileDao.ListGetAllMusic();
+		MusicListTable.setItems(listAllMusic);
+		
+		
+		return MusicListTable;
+		
 	}
 }

@@ -60,11 +60,11 @@ public class UpLoadMusicContoller {
 			@Override
 			public void handle(ActionEvent arg0) {
 				if (nameSongTextField.getText().isEmpty()) {
-					System.out.println("a");
+					System.out.println("unknow? try again");
 				} else if (namSinggerTextField.getText().isEmpty()) {
-					System.out.println("b");
+					System.out.println("unknow? try again");
 				} else if (LinkFIleTetxField.getText().isEmpty()) {
-					System.out.println("c");
+					System.out.println("unknow? try again");
 				} else {
 					Path target = Paths.get("./audio/" + nameSongTextField.getText() + ".mp3");
 					MusicFile musicfile = new MusicFile();

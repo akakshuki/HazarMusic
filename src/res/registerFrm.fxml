@@ -85,9 +85,9 @@
                      </children>
                   </GridPane>
                   <CheckBox fx:id="CheckAgree" layoutX="215.0" layoutY="459.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="371.0" text="you will argree with to Harzard Music  term and condition of use" textFill="#f2efef" />
-                  <Label fx:id="checkUser" layoutX="588.0" layoutY="176.0" prefHeight="17.0" prefWidth="126.0" textFill="#f21212" />
+                  <Label fx:id="checkUser" layoutX="588.0" layoutY="176.0" prefHeight="17.0" prefWidth="167.0" textFill="#f21212" />
                   <Label fx:id="chekcMail" layoutX="592.0" layoutY="247.0" prefHeight="22.0" prefWidth="137.0" textFill="#f21212" />
-                  <Label fx:id="checkpassword" layoutX="588.0" layoutY="211.0" prefHeight="17.0" prefWidth="126.0" textFill="#f21212" />
+                  <Label fx:id="checkpassword" layoutX="588.0" layoutY="211.0" prefHeight="17.0" prefWidth="153.0" textFill="#f21212" />
                </children>
             </Pane>
          </center>

@@ -1,8 +1,6 @@
 package Controller;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
-import java.util.Optional;
 
 import Dao.RelationShipDao;
 import Entities.MusicFile;
@@ -49,19 +47,19 @@ public class RequestController {
 		loadUserInfor(inforSong);
 		loadMusicInfo(inforSong);
 		buttonAddFriend(typeUser, inforSong);
-		buttonRequestFile(typeUser,inforSong);
-		sentRequest(inforSong,typeUser);
-		
+		buttonRequestFile(typeUser, inforSong);
+		sentRequest(inforSong, typeUser);
+
 	}
 
 	private void sentRequest(MusicFile inforSong, User typeUser) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void buttonRequestFile(User typeUser, MusicFile inforSong) {
 		requestSentFileButton.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent arg0) {
 				try {
@@ -79,19 +77,25 @@ public class RequestController {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 			}
 		});
 	}
 
 	private void buttonAddFriend(User user1, MusicFile user2FromSongInfor) {
-		
+		 if(user1.getU_ID() == user2FromSongInfor.getU_ID()||!RelationShipDao.CheckRelationShip(user1,user2FromSongInfor)){
+				{
+					requestSentFileButton.setDisable(true);
+				}
+					
+				}
 		if(RelationShipDao.CheckRelationShip(user1,user2FromSongInfor)||user1.getU_ID() == user2FromSongInfor.getU_ID()){
 			addFriendLb.isDisabled();
 			addFriendLb.setImage(null);
-			requestSentFileButton.setDisable(false);
+			//requestSentFileButton.setDisable(false);
+			
 		}else {
-			requestSentFileButton.setDisable(true);
+			
 			addFriendLb.setOnMouseClicked((MouseEvent  e)->{
 				 {
 					 

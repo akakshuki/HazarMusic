@@ -16,5 +16,15 @@ public class regex {
 		}
 		
 	}
+	public static boolean  CheckLeghtFile(String StringCheck, int min) {
+		if(min <= StringCheck.length() ) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+	
+	
 	
 }

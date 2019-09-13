@@ -88,14 +88,18 @@ public class RegisterController {
 				if (userNameTextField.getText().isEmpty()
 						|| helper.regex.validValue(userNameTextField.getText(), helper.consta.USERNAME)) {
 					checkUser.setText("not ivalid");
+				}else if(!helper.regex.CheckLeghtFile(userNameTextField.getText(), 8)) {
+					checkUser.setText(" user name must have  min 6 ");
 				} else if (UserDao.checkUser(userNameTextField.getText())) {
 					helper.AlbertDiaglog.AlbertDiaglog("User name are already using");
 				} else if (passwordTextField.getText().isEmpty()) {
 					checkpassword.setText("password not empty");
+				}else if(!helper.regex.CheckLeghtFile(passwordTextField.getText(), 8)) {
+					checkpassword.setText("password Must have min 8");
 				} else if (UserDao.checkEmail(mailTextField.getText())) {
 					helper.AlbertDiaglog.AlbertDiaglog("mail are already using");
 				} else if (mailTextField.getText().isEmpty()
-						|| helper.regex.validValue(mailTextField.getText(), helper.consta.MAIL)==true) {
+						|| helper.regex.validValue(mailTextField.getText(), helper.consta.MAIL)==false) {
 					chekcMail.setText("mail not invalid");
 				} else if (fullNameTextField.getText().isEmpty()) {
 					helper.AlbertDiaglog.AlbertDiaglog("we dont know your name @@! ?");

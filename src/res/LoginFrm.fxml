@@ -48,7 +48,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="signUpBtn" layoutX="448.0" layoutY="430.0" prefHeight="23.0" prefWidth="45.0" text="Sign Up!" textFill="#f5c305" />
+                  <Label fx:id="signUpBtn" layoutX="448.0" layoutY="430.0" prefHeight="23.0" prefWidth="92.0" text="Sign Up!" textFill="#f5c305" />
                   <Label fx:id="CheckLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="184.0" layoutY="303.0" prefHeight="29.0" prefWidth="371.0" textAlignment="CENTER" textFill="#f50505" />
                   <PasswordField fx:id="passwordTextfield" layoutX="265.0" layoutY="220.0" prefHeight="26.0" prefWidth="219.0" />
                </children></Pane>

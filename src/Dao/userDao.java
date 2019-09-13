@@ -57,28 +57,20 @@ public class UserDao {
 
 	public static User Login(User loginUser) {
 		User inforUser = new User();
-		ConnectionSQL conn = new ConnectionSQL();
 		Object[] param = {
 			loginUser.getU_Name(), loginUser.getU_Password()	
 		};
 		try {
-			ResultSet rs = conn.CallProc("login", param);
+			ResultSet rs = ConnectionSQL.CallProc("login", param);
 			while(rs.next()) {
 				inforUser.setU_ID(rs.getInt(1));
 				inforUser.setU_Name(rs.getString(2));
-				inforUser.setU_Adress(rs.getString(4));
-				inforUser.setU_Country(rs.getString(5));
-				inforUser.setU_Bio(rs.getString(6));
-				inforUser.setU_Image(rs.getBytes(7));
-				inforUser.setU_Mail(rs.getString(8));
-				inforUser.setU_Phone(rs.getString(9));
-				inforUser.setU_CheckOnline(rs.getBoolean(11));
-				inforUser.setR_ID(rs.getInt(12));
-				inforUser.setU_DateJoin(rs.getDate(13));
-				inforUser.setU_BirthDate(rs.getDate(14));
-				inforUser.setU_FullName(rs.getNString(15));
-				
+				inforUser.setU_Mail(rs.getString(4));
+				inforUser.setU_Phone(rs.getString(5));
+				inforUser.setR_ID(rs.getInt(6));
+				inforUser.setU_FullName(rs.getNString(3));	
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -143,7 +135,7 @@ public class UserDao {
 			Object[] param = {u_ID, 0};
 			conn.CallProcExec("SetOfflineForUser", param);
 		} catch (Exception e) {
-			// TODO: handle ex			ception
+			// TODO: handle exception
 			e.printStackTrace();
 		}
 		
@@ -293,6 +285,45 @@ public class UserDao {
 		return inforUser;
 		
 
+	}
+
+	public static boolean checkPhone(String text) {
+		boolean verify = false;
+		ConnectionSQL conn = new ConnectionSQL();
+		try {
+			Object[] param= {
+					text
+			};
+			ResultSet rs = conn.CallProc("checkPhone", param);
+			if(rs.next()) {
+				verify= true;
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			verify =false;
+		}
+		return verify;
+	
+	}
+
+	public static boolean resetPassword(String mail, String oldpass, String newpass) {
+		boolean verify = false;
+		ConnectionSQL conn = new ConnectionSQL();
+		try {
+			Object[] param= {
+					mail,oldpass,newpass
+			};
+			if(ConnectionSQL.updateStoredOrCreate("resetPassword", param)) {
+				verify= true;
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			verify =false;
+		}
+		return verify;
+	
 	}
 		
 	

@@ -1,7 +1,6 @@
 package Controller;
 
 import java.net.Inet4Address;
-
 import java.net.UnknownHostException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,13 +8,11 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import Dao.MusicFileDao;
 import Dao.RelationShipDao;
 import Dao.RequestSentFileDao;
 import Dao.UserDao;
 import Entities.MusicFile;
-import Entities.RelationShipUser;
 import Entities.RequestSentFile;
 import Entities.User;
 import javafx.application.Platform;
@@ -29,6 +26,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,6 +34,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -151,7 +150,18 @@ public class UserMainFormController {
 	private TableColumn<User, Boolean> OnlineCol;
 	@FXML
 	private Button reloadButton;
-	
+	@FXML
+	private TextField searchMusicName;
+	@FXML
+	private ImageView searchMusicBtn;
+	@FXML
+	private BorderPane logoutbox;
+	@FXML
+	private ImageView logoutbuttn;
+	@FXML
+	private ImageView searchFriendBtn;
+	@FXML
+	private TextField searchFiend;
 	
 	private String LinkFile;
 	private Media me;
@@ -169,19 +179,48 @@ public class UserMainFormController {
 		LoadTabMusic(mainFrm, typeUser);
 		LoadNoficationAndFriendList( typeUser);
 		LoadFileAcceptRequest(typeUser);
+		reloadButton.setOnAction(new EventHandler<ActionEvent>() {
 
+			@Override
+			public void handle(ActionEvent arg0) {
+			refeshTableUpload(typeUser, MusicUserIUpLoadTable);
+			refreshMusicList();	
+			}
+		});
 	}
 
 	private void LoadFileAcceptRequest(User typeUser) {
 		ArrayList<RequestSentFile> listRequest = RequestSentFileDao.getAllAcceptRequestByUser(typeUser.getU_ID());
 		for(RequestSentFile rs : listRequest) {
-			if(rs.getUserTo().isU_CheckOnline()==true) {
+			if(rs.getUserTo().isU_CheckOnline()==true&&rs.getRQ_Waitting()==true) {
 			 helper.SocketGetFile.socketGetFile(rs);
 			}
 		}
 	}
 
 	private void LoadNoficationAndFriendList( User typeUser) {
+		searchFriendBtn.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event arg0) {
+				User infor = UserDao.InfoUserByName(searchFiend.getText());
+				try {
+					Stage inforFor = new Stage();
+					inforFor.resizableProperty().set(false);
+					inforFor.initStyle(StageStyle.UTILITY);
+					inforFor.initModality(Modality.APPLICATION_MODAL);
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/res/InforFriends2.fxml"));
+					AnchorPane root = (AnchorPane) loader.load();
+					Scene newScence = new Scene(root, 820, 718);
+					FriendInforController2 friendInforController2 = loader.getController();
+					friendInforController2.loadInforFriedsForm2(inforFor, infor,typeUser);
+					inforFor.setScene(newScence);
+					inforFor.showAndWait();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		});
 		noficationButton.setOnMouseClicked((MouseEvent e)->{
 		try {
 			Stage requesFor = new Stage();
@@ -371,6 +410,15 @@ public class UserMainFormController {
 	}
 
 	private void LoadTableMusicList(User typeUser) {
+		searchMusicBtn.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event arg0) {
+				searchMusicFile(searchMusicName.getText());
+				
+			}
+		});
+		
 		
 		ObservableList<MusicFile> listAllMusic = MusicFileDao.ListGetAllMusic();
 		M_NameCol.setCellValueFactory(new PropertyValueFactory<MusicFile, String>("M_Name"));
@@ -460,6 +508,15 @@ public class UserMainFormController {
 		MusicListTable.setItems(listAllMusic);
 		MusicListTable.setEditable(false);
 
+	}
+
+		private TableView<MusicFile> searchMusicFile(String text) {
+		ObservableList<MusicFile> listAllMusic = null;
+		listAllMusic = MusicFileDao.ListSearchMusic(text);
+		LibMusicFileView.setItems(listAllMusic);
+		return LibMusicFileView;
+		
+		
 	}
 
 	private void LoadPlayer(Stage mainFrm, User typeUser) {
@@ -616,6 +673,27 @@ public class UserMainFormController {
 	}
 
 	private void LoadUserForm(Stage mainFrm, User typeUser) {
+		logoutbuttn.setOnMouseClicked(new EventHandler<Event>() {
+
+			@Override
+			public void handle(Event arg0) {
+				try {
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/res/logoutForm.fxml"));
+					Parent root = (Parent) loader.load();
+					logoutController controller = loader.getController();
+					Stage RegisterForm = new Stage();
+					RegisterForm.setResizable(false);
+					controller.init(mainFrm,typeUser);
+					logoutbox.setCenter(root);
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+
+				}
+				
+			}
+		});
 		LoadInfo(typeUser);
 		mainFrm.setOnCloseRequest(d -> {
 			UserDao.setUserOffline(typeUser.getU_ID());

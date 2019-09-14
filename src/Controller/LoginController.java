@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class LoginController {
 	@FXML
@@ -119,18 +120,19 @@ public class LoginController {
 							Controller.UserMainFormController UserMainController = loaderMain.getController();
 							UserMainController.loadForm(MainFrm, typeUser);
 							MainFrm.setScene(scene);
+							
 							scene.getStylesheets()
 									.add(getClass().getResource("/css/UserMainForm.css").toExternalForm());
 							MainFrm.setResizable(false);
 							MainFrm.getIcons().add(new Image("./icon/download.png"));
 							MainFrm.setTitle("Hazard Music!!!!");
+							MainFrm.initStyle(StageStyle.UNDECORATED);
 							MainFrm.show();
-
+							mainForm.close();
 						} catch (Exception e) {
 							// TODO: handle exception
 							e.printStackTrace();
 						}
-						mainForm.close();
 						break;
 						
 					default:

@@ -98,6 +98,7 @@ public class RequestSentFileDao {
 				user.setU_Mail(rs.getString(3));
 				user.setU_Image(rs.getBytes(9));
 				user.setU_Name(rs.getString(10));
+				user.setU_IP(rs.getString(16));
 				info.setUserFrom(user);
 				music.setM_Name(rs.getString(6));
 				music.setM_Singer(rs.getString(10));
@@ -106,7 +107,8 @@ public class RequestSentFileDao {
 				info.setM_Name(rs.getString(6));
 				info.setRQ_Date(rs.getDate(4));
 				info.setRQ_MessengerFrom("Accept:	" + rs.getString(5));
-
+				info.setRQ_Waitting(rs.getBoolean(14));
+				info.setRQ_Port(rs.getInt(15));
 				list.add(info);
 			};
 		} catch (Exception e) {
@@ -168,14 +170,40 @@ public class RequestSentFileDao {
 				MusicFile mf = new MusicFile();
 				mf.setM_Name(rs.getString(5));
 				mf.setM_Singer(rs.getString(6));
+				mf.setM_LinkFile(rs.getString(9));
 				rq.setMusicFile(mf);
 				rq.setRQ_Port(rs.getInt(7));
+				rq.setU_IDFrom(rs.getInt(10));
+				rq.setU_IDTo(rs.getInt(11));
+				rq.setM_ID(rs.getInt(12));
+				rq.setRQ_Waitting(rs.getBoolean(13));
 				list.add(rq);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public static void setUnWaiting(RequestSentFile rs, String target) {
+		Object[] param = {rs.getU_IDFrom(),rs.getU_IDTo(),rs.getM_ID(), target};
+		try {
+			if(ConnectionSQL.updateStoredOrCreate("setUnWaiting", param)) {}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void CancelAllRequestSent(int u_ID) {
+		Object[] param= {u_ID};
+		try {
+			if(ConnectionSQL.updateStoredOrCreate("setCancelSendingFile", param)) {
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	

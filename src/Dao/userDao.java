@@ -325,6 +325,32 @@ public class UserDao {
 		return verify;
 	
 	}
+
+	public static User InfoUserByName(String text) {
+		User info = new User();
+		Object[] param = {text};
+		try {
+			ResultSet rs = ConnectionSQL.CallProc("inforuserbyname", param);
+			while(rs.next()) {
+				info.setU_ID(rs.getInt(1));
+				info.setU_Name(rs.getString(2));
+				info.setU_Adress(rs.getString(4));
+				info.setU_Country(rs.getString(5));
+				info.setU_Bio(rs.getString(6));
+				info.setU_Image(rs.getBytes(7));
+				info.setU_Mail(rs.getString(8));
+				info.setU_Phone(rs.getString(9));
+				info.setU_CheckOnline(rs.getBoolean(11));
+				info.setU_DateJoin(rs.getDate(13));
+				info.setU_BirthDate(rs.getDate(14));
+				info.setU_FullName(rs.getNString(15));
+				info.setU_IP(rs.getString(16));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return info;
+	}
 		
 	
 

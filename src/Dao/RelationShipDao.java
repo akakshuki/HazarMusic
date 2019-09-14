@@ -29,9 +29,9 @@ public class RelationShipDao {
 		
 	}
 
-	public static boolean CheckRelationShip(User user1, MusicFile user2) {
-		Object [] param1 = {user1.getU_ID(), user2.getU_ID()};
-		Object [] param2 = {user2.getU_ID(),user1.getU_ID()};
+	public static boolean CheckRelationShip(User user1, MusicFile infor) {
+		Object [] param1 = {user1.getU_ID(), infor.getU_ID()};
+		Object [] param2 = {infor.getU_ID(),user1.getU_ID()};
 		try {
 			ResultSet rs1 = ConnectionSQL.CallProc("checkRelationShip", param1);
 			ResultSet rs2 = ConnectionSQL.CallProc("checkRelationShip", param2);
@@ -44,7 +44,24 @@ public class RelationShipDao {
 			e.printStackTrace();
 			return false;
 		}
-
+		
+	}
+	public static boolean CheckRelationShipuser(User user1, User infor) {
+		Object [] param1 = {user1.getU_ID(), infor.getU_ID()};
+		Object [] param2 = {infor.getU_ID(),user1.getU_ID()};
+		try {
+			ResultSet rs1 = ConnectionSQL.CallProc("checkRelationShip", param1);
+			ResultSet rs2 = ConnectionSQL.CallProc("checkRelationShip", param2);
+			if(rs1.next()&&rs2.next()) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 
 	public static ArrayList<RelationShipUser> getNofiCationFromUser1(int u_ID) {
@@ -131,6 +148,38 @@ public class RelationShipDao {
 		}
 		return user;
 		
+	}
+
+	public static boolean UnfriendFromUser(int u_ID, int u_ID2) {
+		Object[] param1 = {u_ID,u_ID2};
+		Object[] param2 = {u_ID2,u_ID};
+		try {
+			if(ConnectionSQL.updateStoredOrCreate("deleteRealtionShip1", param1)&&ConnectionSQL.updateStoredOrCreate("deleteRealtionShip1", param2)) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public static boolean getNewRelationShipUser(User typeUser, User infor, String messenger, LocalDate now) {
+		try {
+			Object[] param1 = { typeUser.getU_ID(), infor.getU_ID(), messenger, now };
+			Object[] param2 = { infor.getU_ID(), typeUser.getU_ID(), messenger = null, now };
+			if (ConnectionSQL.updateStoredOrCreate("makeNewRelationShip1", param1)
+					&& ConnectionSQL.updateStoredOrCreate("makeNewRelationShip2", param2)) {
+				return true;
+
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

@@ -70,8 +70,8 @@
                         </ImageView>
                      </children>
                   </GridPane>
-                  <TextField layoutX="15.0" layoutY="141.0" />
-                  <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="181.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+                  <TextField fx:id="searchFiend" layoutX="15.0" layoutY="141.0" />
+                  <ImageView fx:id="searchFriendBtn" fitHeight="22.0" fitWidth="24.0" layoutX="181.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icon/searchIcon.png" />
                      </image>
@@ -230,11 +230,12 @@
                      <top>
                         <Pane prefHeight="47.0" prefWidth="810.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                            <children>
-                              <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="794.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="logoutbuttn" fitHeight="36.0" fitWidth="39.0" layoutX="794.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icon/download.png" />
                                  </image>
                               </ImageView>
+                              <BorderPane fx:id="logoutbox" layoutX="669.0" layoutY="7.0" prefHeight="42.0" prefWidth="119.0" />
                            </children>
                         </Pane>
                      </top>
@@ -254,8 +255,8 @@
                                     <TableColumn fx:id="RequestCol" prefWidth="94.4000244140625" text="Request" />
                                 </columns>
                               </TableView>
-                              <TextField layoutX="27.0" layoutY="44.0" prefHeight="25.0" prefWidth="232.0" />
-                              <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="271.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                              <TextField fx:id="searchMusicName" layoutX="27.0" layoutY="44.0" prefHeight="25.0" prefWidth="232.0" />
+                              <ImageView fx:id="searchMusicBtn" fitHeight="22.0" fitWidth="24.0" layoutX="271.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icon/searchIcon.png" />
                                  </image>

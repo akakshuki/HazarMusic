@@ -115,7 +115,7 @@
 										</Label>
 									</children>
 								</GridPane>
-								<Button fx:id="sentButton" layoutX="459.0" layoutY="545.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: #33b724;" text="Accept!" textFill="#131612" />
+								<Button fx:id="sentButton" layoutX="459.0" layoutY="545.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: #33b724;" text="send" textFill="#131612" />
 							</children>
 						</AnchorPane>
 					</content>
@@ -124,11 +124,12 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
-								<TableView fx:id="addFriendsList" prefHeight="557.0" prefWidth="692.0">
+								<TableView fx:id="addAcceptList" prefHeight="630.0" prefWidth="692.0">
 									<columns>
-										<TableColumn fx:id="UserNameCol" prefWidth="75.0" text="From" />
-										<TableColumn fx:id="DateAddFriendCol" prefWidth="125.60001373291016" text="Date" />
-										<TableColumn fx:id="MessengerCol" minWidth="0.79998779296875" prefWidth="491.1999206542969" text="Messenger" />
+										<TableColumn fx:id="UserNameToCol" prefWidth="99.99996793270111" text="From" />
+										<TableColumn fx:id="nameSongCol" prefWidth="120.79999542236328" text="Name Song" />
+										<TableColumn fx:id="MessengerRquestCol" minWidth="0.79998779296875" prefWidth="351.9999694824219" text="Messenger" />
+                              <TableColumn fx:id="ButtonGetAcceptCol" prefWidth="119.199951171875" text="Buton" />
 									</columns>
 								</TableView>
 							</children>

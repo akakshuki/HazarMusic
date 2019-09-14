@@ -11,6 +11,7 @@ import Entities.RequestSentFile;
 // Description : Send file to client
 public class SocketSentFile {
 	public static Thread SocketSentFile(int port, RequestSentFile requestInfo, String filePath) 	{
+		
 		Thread newthreard = new Thread(new Runnable() {
 			
 			@Override

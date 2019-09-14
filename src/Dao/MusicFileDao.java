@@ -93,7 +93,7 @@ public class MusicFileDao {
 	public static ArrayList<MusicFile> GetListLibFileSong() {
 		
 		ArrayList<MusicFile> list = new ArrayList<MusicFile>();
-		try (Stream<Path> filePathStream = Files.walk(Paths.get("./audio/"))) {
+		try (Stream<Path> filePathStream = Files.walk(Paths.get("./download/"))) {
 			filePathStream.forEach(filePath -> {
 				MusicFile file = new MusicFile();
 				file.setM_Name(filePath.getFileName().toString());
@@ -189,6 +189,41 @@ public class MusicFileDao {
 			
 		}
 	
+	}
+
+	public static ObservableList<MusicFile> ListSearchMusic(String text) {
+		ArrayList<MusicFile> arrayList = new ArrayList<>();
+		ObservableList<MusicFile> list = null;
+		Object[] param = {text};
+		try {
+			ResultSet rs = ConnectionSQL.CallProc("searchMusic",param);
+			while (rs.next()) {
+				MusicFile file = new MusicFile();
+				User userInfor = new User();
+				file.setM_Name(rs.getString(1));
+				file.setM_Singer(rs.getString(2));
+				file.setM_Description(rs.getString(3));
+				file.setM_Date(rs.getDate(4));
+				file.setM_Active(rs.getBoolean(5));
+				userInfor.setU_FullName(rs.getString(6));
+				userInfor.setU_Adress(rs.getString(7));
+				userInfor.setU_Country(rs.getString(8));
+				userInfor.setU_Mail(rs.getString(10));
+				userInfor.setU_Name(rs.getString(11));
+				userInfor.setU_Image(rs.getBytes(13));
+				file.setUser(userInfor);
+				file.setM_ID(rs.getInt(12));
+				file.setU_ID(rs.getInt(14));
+				file.setU_Name(rs.getString(6));
+				file.setU_Adress(rs.getString(7));
+				file.setU_Country(rs.getString(8));
+				arrayList.add(file);
+				list =FXCollections.observableArrayList(arrayList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 }

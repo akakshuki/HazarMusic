@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import Dao.RequestSentFileDao;
 import Entities.RequestSentFile;
 
 public class SocketGetFile extends Thread {
@@ -14,7 +15,7 @@ public class SocketGetFile extends Thread {
     public static void socketGetFile(RequestSentFile rs) {
     	    	
 		
-				try {        	
+				try {     System.out.println(rs.getUserTo().getU_IP().toString()+ rs.getRQ_Port());   	
 						Socket socket = new Socket(rs.getUserTo().getU_IP().toString(), rs.getRQ_Port());
 			            System.out.println("Connected to server " + socket.getRemoteSocketAddress());
 			            System.out.println("Getting file from server...");
@@ -22,7 +23,7 @@ public class SocketGetFile extends Thread {
 			            byte[] myByteArray = new byte[FILE_SIZE];
 			            
 			            //String projectPath = System.getProperty("user.dir");
-			            Path target = Paths.get("./download/" + rs.getMusicFile().getM_Name() + ".mp3");
+			            Path target = Paths.get("./download/" + rs.getMusicFile().getM_Name()+" "+rs.getUserTo().getU_FullName() + ".mp3");
 			            InputStream inputStream = socket.getInputStream();
 			            int bytesRead = inputStream.read(myByteArray, 0, myByteArray.length);
 			            int current = bytesRead;
@@ -37,9 +38,9 @@ public class SocketGetFile extends Thread {
 			            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
 			            bufferedOutputStream.write(myByteArray, 0, current);
 			            bufferedOutputStream.flush();
-			            
 			            System.out.println("Get file success...");
-			            helper.AlbertDiaglog.InfoDiaglog("sent file success");            
+			            helper.AlbertDiaglog.InfoDiaglog("sent file success"); 
+			            RequestSentFileDao.setUnWaiting(rs,target.toString());
 			            inputStream.close();
 			            fileOutputStream.close();
 			            bufferedOutputStream.close();
